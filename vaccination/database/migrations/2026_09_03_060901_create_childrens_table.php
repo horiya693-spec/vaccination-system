@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vaccination', function (Blueprint $table) {
+        Schema::create('childrens', function (Blueprint $table) {
             $table->id();
-            $table->string('Child Name');
+             $table->string('Child Name');
             $table->string('Father Name');
             $table->string('Mother Name');
             $table->string('Phone Number');
@@ -22,15 +22,6 @@ return new class extends Migration
             $table->string('Address');
             $table->unsignedBigInteger('Parent_Id');
             $table->foreign('Parent_Id')->references('id')->on('users')->cascadeOnDelete();
-
-
-
-
-
-
-            
-
-
             $table->timestamps();
         });
     }
@@ -40,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vaccination');
+        Schema::dropIfExists('childrens');
     }
 };

@@ -18,3 +18,6 @@ Route::post('/auth/user/register',[AuthController::class,'userregister'])->name(
 Route::post('/auth/user/login',[AuthController::class,'userlogin'])->name('userlogin');
 //AdminDashboard view
 Route::get('/admin/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
+Route::get('/user', function () {
+    return view('user.home');
+});

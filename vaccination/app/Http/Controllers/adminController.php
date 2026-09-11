@@ -10,7 +10,9 @@ class adminController extends Controller
 {
     // view for dasboard
     function dashboard(){
-        return view('Admin.admindashboard');
+    $totalUsers = User::count();
+
+    return view('Admin.admindashboard', compact('totalUsers'));
     }
     //all users data fetch
     function fetch(){

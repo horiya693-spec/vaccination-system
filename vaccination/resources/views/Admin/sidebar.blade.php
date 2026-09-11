@@ -61,7 +61,7 @@
             <div class="dropdown">
               <button class="profile-button dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                
-              <h1 class="  fs-5 fw-500"> hi!   {{$user->name}}</h1>
+            
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="profile.html">Profile</a></li>
@@ -149,11 +149,7 @@
         </a>
       </nav>
 
-      <div class="sidebar-user">
-        <img class="avatar-img avatar-md sidebar-user-avatar" src="{{asset('Admin/assets/images/avatar/avatar.jpg')}}" alt="" >
-        <strong>iqra</strong>
-        <small>Active Workspace</small>
-      </div>
+     
 
       <div class="sidebar-footer">
         <span class="status-dot"></span>

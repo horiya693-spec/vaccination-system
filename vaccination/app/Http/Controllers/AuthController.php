@@ -49,18 +49,23 @@ else{
 }
     }
     
- function logout(Request $request)    {
-        // 1. Log out the active authentication guard instance
-        Auth::logout();
+ 
 
-        // 2. Invalidate the user's active session data payload
-        $request->session()->invalidate();
+public function logout(Request $request)
+{
+    // 1. Log the user out of the application
+    Auth::logout();
 
-        
+    // 2. Invalidate their current session
+    $request->session()->invalidate();
 
-        // 4. Redirect the user back to the primary system login landing screen
-        return redirect()->route('userlogin')->with('status', 'You have been successfully logged out.');
-    }
+    // 3. Regenerate the CSRF token to prevent attacks
+    $request->session()->regenerateToken();
+
+    // 4. Redirect them back to the login page or homepage
+       return redirect('Auth/login');
+}
+
 }
 
     

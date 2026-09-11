@@ -30,3 +30,16 @@ Route::get('admin/deleteuser/{id}',[adminController::class,'deleteuser'])->name(
 
 // logout
 Route::post('admin/dsashboard/logout',[AuthController::class,'logout'])->name('logout');
+
+
+
+
+
+
+
+
+
+//parentDashboard view
+Route::get('/admin/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
+//hospitalDashboard view
+Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);

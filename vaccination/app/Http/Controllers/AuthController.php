@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Return_;
 
 class AuthController extends Controller
 {
@@ -48,5 +49,21 @@ else{
 }
     }
     
-    
+ function logout(Request $request)    {
+        // 1. Log out the active authentication guard instance
+        Auth::logout();
+
+        // 2. Invalidate the user's active session data payload
+        $request->session()->invalidate();
+
+        
+
+        // 4. Redirect the user back to the primary system login landing screen
+        return redirect()->route('userlogin')->with('status', 'You have been successfully logged out.');
+    }
 }
+
+    
+    
+    
+

@@ -14,22 +14,23 @@
               <div>
                 <p class="eyebrow mb-1">Overview</p>
                 <h1 class="h3 mb-1">Dashboard</h1>
-                <p class="text-muted mb-0">Monitor performance, sales, users, and support from one clean workspace.</p>
+                <p class="text-muted mb-0">Monitor performance, Parents, Children, and hospital from one clean workspace.</p>
               </div>
             </div>
-            <div class="heading-actions"><button class="btn btn-outline-secondary btn-sm" type="button"><i class="bi bi-download" aria-hidden="true"></i> Export</button><button class="btn btn-primary btn-sm" type="button"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i> Create Report</button></div>
           </div>
 
           <section class="row g-3 mt-1" aria-label="Dashboard metrics">
             <div class="col-12 col-sm-6 col-xl-3">
               <article class="metric-card metric-primary">
                 <div class="metric-top">
-                  <span class="metric-label">Revenue</span>
-                  <span class="metric-icon"><i class="bi bi-currency-dollar" aria-hidden="true"></i></span>
+                  <span class="metric-label"><p>Total Registered Users: </p></span>
+                  <span class="metric-icon"><i class="bi bi-bag-check" aria-hidden="true"></i></span>
+                  
                 </div>
-                <div class="metric-value">$48,240</div>
+                <div class="metric-value"> <strong>{{ $totalUsers }}</strong></div>
+                
                 <div class="metric-meta">
-                  <span class="text-success">+12.5%</span>
+                
                   <span>from last month</span>
                 </div>
               </article>
@@ -38,13 +39,13 @@
             <div class="col-12 col-sm-6 col-xl-3">
               <article class="metric-card metric-success">
                 <div class="metric-top">
-                  <span class="metric-label">Orders</span>
+                  <span class="metric-label"><p>Total Registered children: </p></span>
                   <span class="metric-icon"><i class="bi bi-bag-check" aria-hidden="true"></i></span>
                 </div>
-                <div class="metric-value">1,284</div>
+                <div class="metric-value"></div>
                 <div class="metric-meta">
-                  <span class="text-success">+8.2%</span>
-                  <span>new orders</span>
+                  <span class="text-success"></span>
+                  <span>From Last Month</span>
                 </div>
               </article>
             </div>
@@ -52,13 +53,15 @@
             <div class="col-12 col-sm-6 col-xl-3">
               <article class="metric-card metric-warning">
                 <div class="metric-top">
-                  <span class="metric-label">Customers</span>
+                  <span class="metric-label"><p>Total Registered Hospital: </p></span>
                   <span class="metric-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+                
                 </div>
-                <div class="metric-value">8,742</div>
+                
+                <div class="metric-value"></div>
                 <div class="metric-meta">
-                  <span class="text-success">+5.1%</span>
-                  <span>active users</span>
+                  <span class="text-success"></span>
+                  <span>over Karachi</span>
                 </div>
               </article>
             </div>
@@ -66,13 +69,13 @@
             <div class="col-12 col-sm-6 col-xl-3">
               <article class="metric-card metric-danger">
                 <div class="metric-top">
-                  <span class="metric-label">Tickets</span>
+                  <span class="metric-label"><P>Total Availible Vaccine:</P></span>
                   <span class="metric-icon"><i class="bi bi-life-preserver" aria-hidden="true"></i></span>
                 </div>
-                <div class="metric-value">36</div>
+                <div class="metric-value"></div>
                 <div class="metric-meta">
-                  <span class="text-danger">3 urgent</span>
-                  <span>need review</span>
+                  <span class="text-danger">3 Unavailible</span>
+                  <span></span>
                 </div>
               </article>
             </div>
@@ -83,8 +86,8 @@
               <div class="panel">
                 <div class="panel-header">
                   <div>
-                    <h2 class="h5 mb-1 section-title"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i><span>Sales Performance</span></h2>
-                    <p class="text-muted mb-0">Monthly revenue compared with operational targets.</p>
+                    <h2 class="h5 mb-1 section-title"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i><span>Report of all children get Vaccinated</span></h2>
+                  
                   </div>
                   <a class="btn btn-light btn-sm" href="charts.html">View Details</a>
                 </div>

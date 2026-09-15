@@ -14,17 +14,17 @@ class validuser
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        if(Auth::check()){
-            if(Auth::user()->role=="admin"){
-            return $next($request);
+        public function handle(Request $request, Closure $next): Response
+        {
+            if(Auth::check()){
+                if(Auth::user()->role=="admin"){
+                return $next($request);
+            }
+            else{
+                return redirect()->route("website");
+            }}
+            else{
+                return redirect()->route('loginform');
+            }
         }
-        else{
-            return redirect()->route("web");
-        }}
-        else{
-            return redirect()->route('loginform');
-        }
-    }
 }

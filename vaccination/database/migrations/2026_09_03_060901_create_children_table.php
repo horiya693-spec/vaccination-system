@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('childrens', function (Blueprint $table) {
+        Schema::create('children', function (Blueprint $table) {
             $table->id();
-             $table->string('Child Name');
-            $table->string('Father Name');
-            $table->string('Mother Name');
-            $table->string('Phone Number');
-            $table->string('Child Gender');
+             $table->string('Child_Name');
+            $table->string('Father_Name');
+            $table->string('Mother_Name');
+            $table->string('Phone_Number');
+            $table->string('Child_Gender');
             $table->date("DOB");
             $table->string('Address');
             $table->unsignedBigInteger('Parent_Id');

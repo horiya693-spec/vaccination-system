@@ -42,7 +42,36 @@ Route::get('admin/deleteuser/{id}',[adminController::class,'deleteuser'])->name(
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //parentDashboard view
 Route::get('/admin/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
+Route::get('/user', function () {
+    return view('user.home');
+});
 //hospitalDashboard view
 Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);

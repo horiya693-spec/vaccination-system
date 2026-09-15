@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Return_;
 
 class AuthController extends Controller
 {
@@ -48,5 +49,26 @@ else{
 }
     }
     
-    
+ 
+
+public function logout(Request $request)
+{
+    // 1. Log the user out of the application
+    Auth::logout();
+
+    // 2. Invalidate their current session
+    $request->session()->invalidate();
+
+    // 3. Regenerate the CSRF token to prevent attacks
+    $request->session()->regenerateToken();
+
+    // 4. Redirect them back to the login page or homepage
+       return redirect('Auth/login');
 }
+
+}
+
+    
+    
+    
+

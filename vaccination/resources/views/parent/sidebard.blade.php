@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="adminHMD professional admin dashboard template">
+  
   <title>Admin Dashboard</title>
 
   <link rel="stylesheet" href="{{asset('Admin/assets/css/bootstrap.min.css')}}">
@@ -90,7 +91,7 @@
         <a class="brand-mark" href="index.html" aria-label="adminHMD dashboard">
           <span class="brand-icon"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span>
           <span class="brand-copy">
-            <span class="brand-title">Admin Dashboard</span>
+            <span class="brand-title">My Profile</span>
             <span class="brand-subtitle"></span>
           </span>
         </a>
@@ -103,47 +104,19 @@
         </a>
         <a class="nav-link" href="users.html">
           <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
-          <span class="nav-text">Users</span>
+          <span class="nav-text">View Child Profile</span>
         </a>
         <a class="nav-link" href="{{route('allusers')}}">
           <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
-          <span class="nav-text">Add User</span>
+          <span class="nav-text">Upcoming Vaccination</span>
         </a>
         <a class="nav-link" href="profile.html">
           <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
-          <span class="nav-text">Profile</span>
+          <span class="nav-text">Vaccination</span>
         </a>
         <a class="nav-link" href="charts.html">
           <span class="nav-icon"><i class="bi bi-bar-chart-line" aria-hidden="true"></i></span>
-          <span class="nav-text">Charts</span>
-        </a>
-        <a class="nav-link" href="tables.html">
-          <span class="nav-icon"><i class="bi bi-table" aria-hidden="true"></i></span>
-          <span class="nav-text">Tables</span>
-        </a>
-        <a class="nav-link" href="forms.html">
-          <span class="nav-icon"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i></span>
-          <span class="nav-text">Forms</span>
-        </a>
-        <a class="nav-link" href="components.html">
-          <span class="nav-icon"><i class="bi bi-grid-3x3-gap" aria-hidden="true"></i></span>
-          <span class="nav-text">Components</span>
-        </a>
-        <a class="nav-link" href="alerts.html">
-          <span class="nav-icon"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i></span>
-          <span class="nav-text">Alerts</span>
-        </a>
-        <a class="nav-link" href="modals.html">
-          <span class="nav-icon"><i class="bi bi-window-stack" aria-hidden="true"></i></span>
-          <span class="nav-text">Modals</span>
-        </a>
-        <a class="nav-link" href="settings.html">
-          <span class="nav-icon"><i class="bi bi-gear" aria-hidden="true"></i></span>
-          <span class="nav-text">Settings</span>
-        </a>
-        <a class="nav-link" href="blank.html">
-          <span class="nav-icon"><i class="bi bi-file-earmark" aria-hidden="true"></i></span>
-          <span class="nav-text">Blank Page</span>
+          <span class="nav-text">Hospitals</span>
         </a>
       </nav>
 
@@ -155,7 +128,7 @@
       </div>
     </aside>
 <!-- sidebar start -->
-  @yield('admin')
+  @yield('parent')
 
   </div>
 

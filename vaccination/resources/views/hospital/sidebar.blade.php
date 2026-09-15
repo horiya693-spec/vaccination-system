@@ -155,7 +155,7 @@
       </div>
     </aside>
 <!-- sidebar start -->
-  @yield('admin')
+  @yield('hospital')
 
   </div>
 

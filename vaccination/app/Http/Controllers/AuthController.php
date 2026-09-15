@@ -41,7 +41,7 @@ return view('Auth/Register');
 
     $check=Auth::attempt($data);
 if($check){
-return redirect()->route('web');
+return redirect()->route('website');
 
 }
 else{

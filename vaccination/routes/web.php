@@ -59,3 +59,37 @@ Route::get('/hospital/dashboard',[hospitalController::class,'dashboard'])->name(
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//parentDashboard view
+Route::get('/admin/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
+Route::get('/user', function () {
+    return view('user.home');
+});
+//hospitalDashboard view
+Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);

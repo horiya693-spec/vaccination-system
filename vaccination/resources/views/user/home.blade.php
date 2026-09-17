@@ -642,8 +642,8 @@ footer p {
         </nav>
 
         <div class="nav-buttons">
-            <a href="#" class="login-btn">Login</a>
-            <a href="#" class="signup-btn">Register</a>
+            <a href="Auth/login" class="login-btn">Login</a>
+            <a href="Auth/Register" class="signup-btn">Register</a>
         </div>
     </header>
 

@@ -16,8 +16,6 @@ class userController extends Controller
         return view('user/welcome');
     }
 
-
-     main
 }
 
 

@@ -1,6 +1,5 @@
-
- @extends('Admin.sidebar')
- @section('admin')
+@extends('Admin.sidebar')
+@section('admin')
  
  
  
@@ -31,7 +30,8 @@
                   <span class="metric-icon"><i class="bi bi-bag-check" aria-hidden="true"></i></span>
                   
                 </div>
-                <div class="metric-value"> <strong>{{ $totalUsers }}</strong></div>
+                <div class="metric-value"> <strong><p> <strong>{{ $totalUsers }}</strong></p>
+</strong></div>
                 
                 <div class="metric-meta">
                 
@@ -44,9 +44,12 @@
               <article class="metric-card metric-success">
                 <div class="metric-top">
                   <span class="metric-label"><p>Total Registered children: </p></span>
-                  <span class="metric-icon"><i class="bi bi-bag-check" aria-hidden="true"></i></span>
+                  <span class="metric-icon"><i class="bi bi-bag-check" aria-hidden="true"></i>
+                </span>
                 </div>
-                <div class="metric-value"></div>
+                  <div class="metric-value"> <strong><p> <strong>{{ $totalchild }}</strong></p>
+</strong></div>
+                
                 <div class="metric-meta">
                   <span class="text-success"></span>
                   <span>From Last Month</span>

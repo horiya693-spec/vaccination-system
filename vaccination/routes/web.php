@@ -16,7 +16,7 @@ Route::get('/user/web',[userController::class,'index'])->name('website');
 
 //-----------------ALL AUTH Route--------------------------------  
 // register form view
-Route::get('/auth/register',[AuthController::class,'Register'])->name('userregisterform');
+Route::get('/Auth/Register',[AuthController::class,'Register'])->name('userregisterform');
 //login form view
 Route::get('/Auth/login',[AuthController::class,'login'])->name('loginform');
 //user register
@@ -96,8 +96,15 @@ Route::get('/hospital/dashboard',[hospitalController::class,'dashboard'])->name(
 
 //parentDashboard view
 Route::get('/admin/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
+ //user//
 Route::get('/user', function () {
     return view('user.home');
 });
+// HEAD
+//for vaccine//
+Route::get('/vaccines', function () {
+    return view('user.vaccines');
+});
+
 //hospitalDashboard view
 Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);

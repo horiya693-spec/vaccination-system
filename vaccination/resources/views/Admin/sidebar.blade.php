@@ -109,9 +109,9 @@
           <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
           <span class="nav-text">Add User</span>
         </a>
-        <a class="nav-link" href="profile.html">
+        <a class="nav-link" href="{{route('admin.vaccine.create')}}">
           <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
-          <span class="nav-text">Profile</span>
+          <span class="nav-text">Vaccines</span>
         </a>
         <a class="nav-link" href="charts.html">
           <span class="nav-icon"><i class="bi bi-bar-chart-line" aria-hidden="true"></i></span>

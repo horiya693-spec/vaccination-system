@@ -7,11 +7,11 @@
     <style>
         /* Modern Blue Theme Variables */
         :root {
-            --primary-blue: #2563eb;    /* Deep Royal Blue */
+            --primary-blue: #0f766e;    /* Deep Royal Blue */
             --light-blue: #eff6ff;      /* Soft Ice Blue Background */
             --border-blue: #bfdbfe;     /* Gentle Input Accent Border */
-            --hover-blue: #1d4ed8;      /* Darker Blue for Button Hover */
-            --text-dark: #1e3a8a;       /* Dark Blue for Typography */
+            --hover-blue: #0f766e;      /* Darker Blue for Button Hover */
+            --text-dark: #0f766e;       /* Dark Blue for Typography */
             --text-muted: #64748b;
         }
 
@@ -136,7 +136,7 @@
 
 <div class="form-container">
     <div class="form-header">
-        <h2>👶 Child Registration</h2>
+        <h2>Child Registration</h2>
         <p>Please enter your child's legal information to schedule vaccinations.</p>
     </div>
 

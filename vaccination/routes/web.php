@@ -28,7 +28,8 @@ Route::post('auth/user/logout',[AuthController::class,'logout'])->name('logout')
 //  -------------------ALL AUTH Route--------------------------------  
 
 //--------------------------AdminDashboard view------------------
-Route::get('/admin/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
+Route::middleware([validuser::class])->group(function () {
+Route::get('/admin/dashboard',[adminController::class,'dashboard'])->name('dashboard');
 // fetch data
 Route::get('/admin/allusers',[adminController::class,'fetch'])->name('allusers');
 // edituser
@@ -40,9 +41,12 @@ Route::get('admin/deleteuser/{id}',[adminController::class,'deleteuser'])->name(
 //vacine upload
 //form view         
 Route::get('/admin/vaccine/create', [adminController::class, 'create'])->name('admin.vaccine.create');
+Route::get('/admin/vaccine/allchildren', [adminController::class, 'fetchchildren'])->name('fetchchildren');
 
+});
 // Form  logic
 Route::post('/admin/vaccine/store', [adminController::class, 'store'])->name('admin.vaccine.store');
+Route::get('/admin/vaccine/all', [adminController::class, 'fetchvaccine'])->name('allvaccine');
 
 //--------------------Parents dashbaord view---------------------------
  Route::middleware([parentverify::class])->group(function () {

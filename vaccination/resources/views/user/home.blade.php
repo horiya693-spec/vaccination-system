@@ -801,7 +801,7 @@ footer p {
                     Keep track of your vaccination dates and
                     never miss an important dose.
                 </p>
-                <a href="#">Learn More →</a>
+                <a href="location">Learn More →</a>
             </div>
 
         

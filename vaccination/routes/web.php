@@ -88,7 +88,7 @@ Route::get('/vaccines', function () {
 Route::get('/about', function () {
     return view('user.about');
 });
-
+Route::get('/location', [UserController::class, 'location']);
 
 Route::get('/hospitals',[userController::class,'hospitals'])->name('hospitals');
 //hospitalDashboard view

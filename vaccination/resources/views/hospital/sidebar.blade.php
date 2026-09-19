@@ -1,3 +1,6 @@
+ @extends('hospital.sidebar')
+ @section('hospital')
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,3 +166,4 @@
   <script src="{{asset('Admin/assets/js/main.js')}}"></script>
 </body>
 </html>
+@endsection

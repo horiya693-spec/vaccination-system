@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="adminHMD professional admin dashboard template">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
   <title>Admin Dashboard</title>
 
   <link rel="stylesheet" href="{{asset('Admin/assets/css/bootstrap.min.css')}}">
@@ -14,9 +14,23 @@
 <style>
 
   .btn{
-    font-weight: 400;
-    background-color:white;
+    font-weight: bold;
+    background-color:#0f766e;
+    color: #ece9e9;
+
     }
+    .card-header{
+      background-color: #0f766e;
+    color:white;
+    }
+    .bg-green {
+    background-color: #d4edda !important; /* Light green color */
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    padding: 10px; /* Adds space inside the box */
+}
+
+
 </style>
 <body>
   
@@ -88,7 +102,7 @@
 <!-- sidebar start -->
     <aside class="admin-sidebar" id="adminSidebar" aria-label="Main navigation">
       <div class="sidebar-header">
-        <a class="brand-mark" href="index.html" aria-label="adminHMD dashboard">
+        <a class="brand-mark" href="{{route('parentdashboard')}}" aria-label="adminHMD dashboard">
           <span class="brand-icon"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span>
           <span class="brand-copy">
             <span class="brand-title">My Profile</span>
@@ -100,9 +114,9 @@
       <nav class="sidebar-nav">
         <a class="nav-link active" href="{{route('dashboard')}}" aria-current="page">
           <span class="nav-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
-          <span class="nav-text">Dashboard</span>
+          <span class="nav-text">Home Page</span>
         </a>
-        <a class="nav-link" href="users.html">
+        <a class="nav-link" href="{{route('childprofile')}}">
           <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
           <span class="nav-text">View Child Profile</span>
         </a>

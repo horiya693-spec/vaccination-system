@@ -8,6 +8,9 @@
  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playwrite+BE+WAL+Guides&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playwrite+BE+WAL+Guides&display=swap" rel="stylesheet">
 
 
@@ -70,18 +73,22 @@ nav a {
     font-size: 15px;
     transition: 0.3s;
 }
-
-nav a:hover {
+.welcome-user {
+    text-decoration: none;
     color: #087f8c;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 8px 0;
+    transition: 0.3s;
+    
 }
 
-.nav-buttons {
-    display: flex;
-    gap: 10px;
+.welcome-user:hover {
+    color: #05636d;
+    transform: translateY(-1px);
 }
-
 .login-btn,
-.signup-btn {
+.register-btn {
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 8px;
@@ -89,9 +96,48 @@ nav a:hover {
 
 .login-btn {
     color: #087f8c;
+    margin-left: 80px;
+    margin-right: 0%;
 }
 
-.signup-btn {
+.register-btn {
+    background: #087f8c;
+    color: white;
+    margin-right: 40px;
+    margin-left: 0%;
+}
+
+.profile-btn {
+    background: #087f8c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+nav a:hover {
+    color: #087f8c;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-btn,
+.register-btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.login-btn {
+    color: #087f8c;
+}
+
+.register-btn {
     background: #087f8c;
     color: white;
 }
@@ -665,10 +711,18 @@ footer p {
             <a href="#contact">Contact</a>
         </nav>
 
-        <div class="nav-buttons">
-            <a href="{{route('loginform')}}" class="login-btn">Login</a>
-            <a href="{{route('userregisterform')}}" class="signup-btn">Register</a>
-        </div>
+    @guest
+    <div class="nav-buttons">
+        <a href="/Auth/login" class="login-btn">Login</a>
+        <a href="/auth.register" class="register-btn">Register</a>
+    </div>
+@endguest
+
+@auth
+    <a href="/profile" class="welcome-user">
+        Hey, {{ Auth::user()->name }} !
+    </a>
+@endauth
     </header>
 
 
@@ -689,7 +743,7 @@ footer p {
             </p>
 
             <div class="hero-buttons">
-                <a href="#" class="primary-btn">Get Started →</a>
+                <a href="/hospitals" class="primary-btn">Get Started →</a>
                 <a href="#about" class="secondary-btn">Learn More</a>
             </div>
 
@@ -730,10 +784,19 @@ footer p {
         </div>
 
         <div class="service-container">
-
-            <div class="service-card">
+            
+       <div class="service-card">
                 <div class="service-icon">📅</div>
-                <h3>Vaccination Schedule</h3>
+                <h3>book appointment</h3>
+                <p>
+                    Find nearby hospitals and vaccination
+                    centers easily.
+                </p>
+                <a href="hospitals">book appointment →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏥</div>
+                <h3>hospitals</h3>
                 <p>
                     Keep track of your vaccination dates and
                     never miss an important dose.
@@ -741,15 +804,7 @@ footer p {
                 <a href="#">Learn More →</a>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon">🏥</div>
-                <h3>Find Hospitals</h3>
-                <p>
-                    Find nearby hospitals and vaccination
-                    centers easily.
-                </p>
-                <a href="parent/dashboard">Find Hospital →</a>
-            </div>
+        
 
             <div class="service-card">
                 <div class="service-icon">💊</div>
@@ -760,6 +815,7 @@ footer p {
                 </p>
                 <a href="vaccines">View Vaccines →</a>
             </div>
+
 
             <div class="service-card">
               <img src="{{ asset('Admin/assets/images/png/kote.jpg') }}" alt="">

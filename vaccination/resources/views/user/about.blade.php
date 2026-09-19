@@ -353,11 +353,11 @@ nav a:hover {
         </div>
 
         <nav>
-            <a href="home">Home</a>
+            <a href="/home">Home</a>
             <a href="#services">Services</a>
             <a href="vaccines">Vaccines</a>
             <a href="about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="/hospitals">Contact</a>
         </nav>
 
         <div class="nav-buttons">

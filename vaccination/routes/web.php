@@ -90,8 +90,7 @@ Route::get('/about', function () {
 });
 
 
-
-
+Route::get('/hospitals',[userController::class,'hospitals'])->name('hospitals');
 //hospitalDashboard view
 Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
 

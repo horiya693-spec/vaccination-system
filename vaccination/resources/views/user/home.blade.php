@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VacciCare - Vaccination Management System</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playwrite+BE+WAL+Guides&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <style>
@@ -93,18 +95,31 @@ nav a:hover {
 /* Hero */
 
 .hero {
+    position: relative;
     min-height: 650px;
     padding: 70px 8%;
+    background: rgba(0, 35, 50, 0.55);
     display: flex;
     align-items: center;
-background-image: url("{{ asset('Admin/assets/images/png/vacc1.jpg') }}");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+    justify-content: space-between;
 
+    background-image: url("{{ asset('Admin/assets/images/png/inj.png') }}");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 45, 65, 0.45);
+}
 .hero-content {
     width: 52%;
+  
+    position: relative;
+    z-index: 2;
+
 }
 
 .badge {
@@ -113,18 +128,30 @@ background-image: url("{{ asset('Admin/assets/images/png/vacc1.jpg') }}");
     color: #087f8c;
     padding: 9px 16px;
     border-radius: 30px;
-    font-size: 14px;
+    font-size: 1px;
     margin-bottom: 20px;
 }
-
+.hero-image {
+    position: relative;
+    z-index: 2;
+}
 .hero h1 {
-    font-size: 58px;
+    font-size: 60px;
     line-height: 1.1;
     margin-bottom: 25px;
+   color: #f5fbfb;
+  font-family: "Playfair Display SC", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
+
+
 .hero h1 span {
-    color: #087f8c;
+    color: #fdfdfd;
+ font-family: "Playfair Display SC", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .hero p {
@@ -172,11 +199,11 @@ background-image: url("{{ asset('Admin/assets/images/png/vacc1.jpg') }}");
 
 .hero-stats strong {
     font-size: 25px;
-    color: #17324d;
+    color: #f6f7f8;
 }
 
 .hero-stats span {
-    color: #718394;
+    color: #f5f7f9;
 }
 
 
@@ -191,15 +218,7 @@ background-image: url("{{ asset('Admin/assets/images/png/vacc1.jpg') }}");
     align-items: center;
 }
 
-.circle {
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background: #cdeff1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .vaccine-icon {
     font-size: 150px;
@@ -642,8 +661,8 @@ footer p {
         </nav>
 
         <div class="nav-buttons">
-            <a href="Auth/login" class="login-btn">Login</a>
-            <a href="Auth/Register" class="signup-btn">Register</a>
+            <a href="{{route('loginform')}}" class="login-btn">Login</a>
+            <a href="{{route('userregisterform')}}" class="signup-btn">Register</a>
         </div>
     </header>
 
@@ -651,7 +670,7 @@ footer p {
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <span class="badge"> Your Health, Our Priority</span>
+           
 
             <h1>
                 Protecting Lives<br>
@@ -687,19 +706,10 @@ footer p {
             </div>
         </div>
 
-        <div class="hero-image">
-            <div class="circle">
-                <div class="vaccine-icon">💉</div>
-            </div>
+        <div class="hero-image"> 
+    </div> 
 
-            <div class="floating-card card-one">
-                ✓ Vaccination Safe
-            </div>
-
-            <div class="floating-card card-two">
-                🛡️ Health Protected
-            </div>
-        </div>
+</div>
     </section>
 
 
@@ -733,7 +743,7 @@ footer p {
                     Find nearby hospitals and vaccination
                     centers easily.
                 </p>
-                <a href="#">Find Hospital →</a>
+                <a href="parent/dashboard">Find Hospital →</a>
             </div>
 
             <div class="service-card">
@@ -828,7 +838,7 @@ footer p {
                 <p>✓ Secure patient records</p>
             </div>
 
-            <a href="#" class="primary-btn">Explore System →</a>
+            <a href="about" class="primary-btn">Explore System →</a>
         </div>
     </section>
 
@@ -841,7 +851,7 @@ footer p {
             records organized.
         </p>
 
-        <a href="#" class="cta-btn">Get Started Today →</a>
+        <a href="Auth/Register" class="cta-btn">Get Started Today →</a>
     </section>
 
 

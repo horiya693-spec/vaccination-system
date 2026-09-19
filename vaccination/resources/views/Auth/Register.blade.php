@@ -63,7 +63,7 @@
         button {
             width: 100%;
             padding: 12px;
-            background-color: #007bff;
+             background-color: #087f8c;
             border: none;
             border-radius: 4px;
             color: white;
@@ -74,7 +74,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #044951;
         }
     </style>
 </head>

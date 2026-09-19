@@ -94,9 +94,14 @@ Route::get('/user', function () {
 });
 // HEAD
 //for vaccine//
+Route::get('/home', function () {
+    return view('user.home');
+});
 Route::get('/vaccines', function () {
     return view('user.vaccines');
 });
-
+Route::get('/about', function () {
+    return view('user.about');
+});
 //hospitalDashboard view
 Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);

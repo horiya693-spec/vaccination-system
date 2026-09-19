@@ -18,38 +18,67 @@
             color: #173b4d;
         }
 
-        /* NAVBAR */
-        nav {
-            height: 75px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
+       /* Navbar */
 
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-            color: #0b8f9c;
-        }
+.navbar {
+    height: 75px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #087f8c;
+}
 
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-        }
+.logo span {
+    font-size: 27px;
+}
 
-        nav ul li a:hover {
-            color: #0b8f9c;
-        }
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #40566b;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #087f8c;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.login-btn,
+.signup-btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.login-btn {
+    color: #087f8c;
+}
+
+.signup-btn {
+    background: #087f8c;
+    color: white;
+}
 
         /* HERO */
         .hero {
@@ -197,18 +226,25 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">VacciCare</div>
+  <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <span>💉</span> VacciCare
+        </div>
 
-        <ul>
-            <li><a href="user#home">Home</a></li>
-            <li><a href="vaccines">Vaccines</a></li>
-            <li><a href="#">Hospitals</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <a href="/home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#vaccines">Vaccines</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
+        <div class="nav-buttons">
+            <a href="Auth/login" class="login-btn">Login</a>
+            <a href="Auth/Register" class="signup-btn">Register</a>
+        </div>
+    </header>
 
     <!-- HERO -->
     <section class="hero">

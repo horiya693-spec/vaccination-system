@@ -13,7 +13,10 @@ class userController extends Controller
         return view('user.vaccines');
     }
     function index(){
-        return view('user/welcome');
+        return view('user.home');
+    }
+function about(){
+        return view('user.about');
     }
 
 }

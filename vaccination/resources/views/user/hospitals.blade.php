@@ -522,7 +522,7 @@ nav a:hover {
                     </h4>
 
                     <p>
-                        Your appointment request will be submitted as
+                        Your appointment request will be submitted 
                         <strong>Pending</strong>.
                     </p>
 

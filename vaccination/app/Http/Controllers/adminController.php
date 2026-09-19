@@ -9,20 +9,20 @@ use Illuminate\Http\Request;
 
 class adminController extends Controller
 {
-    // view for dasboard-------------
+    // view for dasboard
     function dashboard(){
     $totalUsers = User::count();
     $totalchild = child::count();
 
     return view('Admin.admindashboard', compact('totalUsers','totalchild'));
     }
-    //all users data fetch-------------
+    //all users data fetch
     function fetch(){
         $data=User::all();
 
         return view('Admin.allusers',compact('data'));
     }
-//edit users deatils----------------
+//edit users deatils
 
 function edituser($id){
 $data=User::findOrfail($id);
@@ -57,7 +57,7 @@ function deleteuser($id){
     }
     
 }
-//----all vaccine uploaded form view----------
+//----all vaccine uploaded form view
  public function create()
     {
         return view('Admin/createvaccine');
@@ -79,13 +79,13 @@ public function store(Request $request)
 
         return redirect()->back()->with('success', 'Vaccine uploaded successfully to master list!');
     }
-    //all vaccines fetch  logic------------------
+    //all vaccines fetch  logic
      function fetchvaccine(){
         $data=vaccination::all();
 
         return view('Admin.all-vaccines',compact('data'));
     }
-//---------all registerd child-------
+//---------all registerd child
 
     public function fetchchildren(Request $req)
     {

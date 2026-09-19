@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 class userController extends Controller
 {
     function user(){
-        return view('user.home');
+        return view('user.about');
     }
     //vaccines//
     function vaccines(){
@@ -17,6 +17,9 @@ class userController extends Controller
     }
 function about(){
         return view('user.about');
+
+        return view('user/home');
+
     }
 
 }

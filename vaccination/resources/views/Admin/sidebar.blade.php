@@ -124,7 +124,7 @@
           <span class="nav-icon"><i class="bi bi-bar-chart-line" aria-hidden="true"></i></span>
           <span class="nav-text">All Vaccine </span>
         </a>
-        <a class="nav-link" href="{{route('add hospitals')}}">
+        <a class="nav-link" href="{{route('addhospitals')}}">
           <span class="nav-icon"><i class="bi bi-table" aria-hidden="true"></i></span>
           <span class="nav-text">Add Hospitals</span>
         </a>

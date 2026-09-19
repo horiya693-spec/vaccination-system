@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\hospital;
 use App\Models\child;
 use App\Models\User;
 use App\Models\vaccination;
@@ -16,13 +17,13 @@ class adminController extends Controller
 
     return view('Admin.admindashboard', compact('totalUsers','totalchild'));
     }
-    //all users data fetch
+    //all users data fetch-------------
     function fetch(){
         $data=User::all();
 
         return view('Admin.allusers',compact('data'));
     }
-//edit users deatils
+//edit users deatils----------------
 
 function edituser($id){
 $data=User::findOrfail($id);
@@ -102,6 +103,11 @@ public function store(Request $request)
 
         // 4. Data ko blade view (dashboard table) par bhejein
         return view('Admin/allchildren', compact('children'));
+    }
+    function addhospitals(){
+        $data= hospital::all();
+return view('Admin/addhospitals');
+
     }
 }
 

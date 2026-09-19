@@ -38,10 +38,12 @@ Route::get('admin/edituser/{id}',[adminController::class,'edituser'])->name('edi
 Route::post('admin/update/{id}',[adminController::class,'updateuser'])->name('update');
 // deleteuser
 Route::get('admin/deleteuser/{id}',[adminController::class,'deleteuser'])->name('deleteuser');
+
 //vacine upload
 //form view         
 Route::get('/admin/vaccine/create', [adminController::class, 'create'])->name('admin.vaccine.create');
 Route::get('/admin/vaccine/allchildren', [adminController::class, 'fetchchildren'])->name('fetchchildren');
+Route::get('admin/addhospitals',[adminController::class,'addhospitals'])->name('addhospitals');
 
 });
 // Form  logic

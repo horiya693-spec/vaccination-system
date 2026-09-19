@@ -16,6 +16,13 @@
     font-weight: 400;
     background-color:white;
     }
+
+    .card-header{
+        background-color: #0f766e;
+        color: white;
+
+}
+
 </style>
 <body>
   
@@ -101,21 +108,21 @@
           <span class="nav-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
           <span class="nav-text">Dashboard</span>
         </a>
-        <a class="nav-link" href="users.html">
+        <a class="nav-link" href="{{route('fetchchildren')}}">
           <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
-          <span class="nav-text">Users</span>
+          <span class="nav-text">Registered Children</span>
         </a>
         <a class="nav-link" href="{{route('allusers')}}">
           <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
-          <span class="nav-text">Add User</span>
+          <span class="nav-text"> Users</span>
         </a>
-        <a class="nav-link" href="profile.html">
+        <a class="nav-link" href="{{route('admin.vaccine.create')}}">
           <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
-          <span class="nav-text">Profile</span>
+          <span class="nav-text">Upload Vaccines</span>
         </a>
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{route('allvaccine')}}">
           <span class="nav-icon"><i class="bi bi-bar-chart-line" aria-hidden="true"></i></span>
-          <span class="nav-text">Charts</span>
+          <span class="nav-text">All Vaccine </span>
         </a>
         <a class="nav-link" href="tables.html">
           <span class="nav-icon"><i class="bi bi-table" aria-hidden="true"></i></span>

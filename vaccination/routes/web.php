@@ -44,7 +44,11 @@ Route::get('admin/deleteuser/{id}',[adminController::class,'deleteuser'])->name(
 Route::get('/admin/vaccine/create', [adminController::class, 'create'])->name('admin.vaccine.create');
 Route::get('/admin/vaccine/allchildren', [adminController::class, 'fetchchildren'])->name('fetchchildren');
 Route::get('admin/addhospitals',[adminController::class,'addhospitals'])->name('addhospitals');
+Route::get('/admin/appointments',[adminController::class, 'admin'])->name('admin.appointments');
 
+Route::post('/admin/appointments/{id}/approve',[adminController::class, 'approve'])->name('admin.appointment.approve');
+
+Route::post('/admin/appointments/{id}/reject',[adminController::class, 'reject'])->name('admin.appointment.reject');
 });
 // Form  logic
 Route::post('/admin/vaccine/store', [adminController::class, 'store'])->name('admin.vaccine.store');
@@ -57,7 +61,14 @@ Route::get('/admin/vaccine/all', [adminController::class, 'fetchvaccine'])->name
     Route::get('/parent/childdeatils/{id}', [parentController::class, 'childdeatils'])->name('child');
 Route::get('admin/editchild/{id}',[parentController::class,'editchild'])->name('editchild');
     Route::get('/parent/childprofile', [parentController::class, 'childprofile'])->name('childprofile');
-    });
+      Route::get('/parent/vaccinations',[parentController::class, 'childvaccine'])->name('parent.vaccinations');
+  
+
+    Route::get('/parent/appointment/{child_id}/{vaccination_id}',[parentController::class, 'booking'])->name('parent.appointment.create');
+
+    Route::post('/parent/appointment',[parentController::class, 'store'])->name('parent.appointment.store');
+
+});
 //--------------------Parents dashbaord innerconnection---------------------------
 
  Route::post('/user/addchild', [parentController::class, 'addchild'])->name('addchild');
@@ -65,16 +76,24 @@ Route::post('user/updatechild/{id}',[parentController::class,'updatechild'])->na
 
 
 //------------------------hospital dashbaor--------------------------
+Route::middleware([hospitalmember::class])->group(function () {
 
-Route::get('/hospital/dashboard',[hospitalController::class,'dashboard'])->name('hospitaldashboard')->middleware(hospitalmember::class);
-
-
-
+Route::get('/hospital/dashboard',[hospitalController::class,'dashboardhospital'])->name('hospitaldashboard');
 
 
-//parentDashboard view
-Route::get('/admin/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
- //user//
+Route::get('/hospital/vaccines', [HospitalController::class, 'vaccines'])->name('hospital.vaccines');
+
+Route::post('/hospital/vaccines/{vaccination_id}/status', [HospitalController::class, 'updateVaccineStatus'])
+    ->name('hospital.vaccine.status');
+
+Route::get('/hospital/appointments', [HospitalController::class, 'appointments'])
+    ->name('hospital.appointments');
+
+Route::post('/hospital/approve/{id}', [HospitalController::class, 'complete'])
+    ->name('hospital.appointment.complete');
+
+});
+ //--------------------user website ke sare routes-------------//
 Route::get('/user', function () {
     return view('user.home');
 });
@@ -92,12 +111,14 @@ Route::get('/about', function () {
 });
 Route::get('/location', [UserController::class, 'location']);
 
-Route::get('/hospitals',[userController::class,'hospitals'])->name('hospitals');
-//hospitalDashboard view
-Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
+
 
 
 Route::get('/auth.register', function () {
     return view('auth.register');
 });
+///user appointment main wala form
 
+Route::get('/appointment/book/{child_id}/{vaccination_id}',[userController::class, 'create'])->name('appointment.create');
+
+Route::post('/appointment/store',[userController::class, 'store'])->name('appointment.store');

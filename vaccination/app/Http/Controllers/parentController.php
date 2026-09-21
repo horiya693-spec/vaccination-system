@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\appointment;
+use App\Models\appointment as ModelsAppointment;
+use App\Models\Booking;
 use App\Models\child;
+use App\Models\Hospital;
+use App\Models\vaccination;
+use App\Models\vaccineschild;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,15 +74,12 @@ function editchild($id){
 
 function updatechild(Request $req, $id) 
 {
-    // 1. Find the child record
     $data = child::find($id);
 
-    // Safety Check: If the child does NOT exist, send back an error
     if (!$data) {
         return redirect()->back()->with("error", "Child details record not found.");
     }
 
-    // 2. Update the fields (REMOVED Parent_Id check for security)
     $data->Child_Name   = $req->Child_Name;
     $data->Father_Name  = $req->Father_Name;
     $data->Mother_Name  = $req->Mother_Name;
@@ -84,10 +88,8 @@ function updatechild(Request $req, $id)
     $data->Phone_Number = $req->Phone_Number; 
     $data->Address      = $req->Address;      
 
-    // 3. Save the new information to the database
     $data->save();
 
-    // 4. FIXED: Redirect back to the details page WITH the specific child ID
     return redirect()->route('child', $id)->with("success", "Child Details Updated successfully");
 }
 function childprofile(){
@@ -96,6 +98,102 @@ $parentId = Auth::id();
     $children = Child::where('parent_id', $parentId)->get();
 return view('parent/childprofile',compact('children'));
 }
+
+//chld vaccines 
+
+    public function childvaccine()
+    {
+        // Logged-in parent
+        $parentId = Auth::id();
+
+        // Sirf is parent ke children
+        $children = child::where('Parent_Id', $parentId)->get();
+
+        // Saari vaccines
+        $vaccinations = vaccination::all();
+
+        $data = [];
+
+        foreach ($children as $child) {
+
+            $vaccineList = [];
+
+            foreach ($vaccinations as $vaccine) {
+
+                // Target Age ko days mein convert hogyi
+                $days = $this->targetAgeToDays($vaccine->Target_Age);
+
+                // Child ki DOB or target age
+                $dueDate = Carbon::parse($child->DOB)->addDays($days);
+
+                // vaccine complet ha yah nahi
+               $completed = vaccineschild::where('child_id', $child->id)
+    ->where('vaccination_id', $vaccine->id)
+    ->where('status', 'Completed')
+    ->first();
+
+                // Status karna
+                if ($completed) {
+
+                    $status = 'Completed';
+
+                } elseif ($dueDate->isPast() || $dueDate->isToday()) {
+
+                    $status = 'Due';
+
+                } else {
+
+                    $status = 'Upcoming';
+                }
+
+                $vaccineList[] = [
+                    'vaccine' => $vaccine,
+                    'due_date' => $dueDate,
+                    'status' => $status,
+                    'completed' => $completed,
+                ];
+            }
+
+            $data[] = [
+                'child' => $child,
+                'vaccines' => $vaccineList,
+            ];
+        }
+
+        return view('parent.vaccinations', compact('data'));
+    }
+
+
+    private function targetAgeToDays($targetAge)
+    {
+        $targetAge = strtolower(trim($targetAge));
+
+        if ($targetAge === 'at birth') {
+            return 0;
+        }
+
+        if (preg_match('/(\d+)\s*weeks?/', $targetAge, $matches)) {
+            return (int) $matches[1] * 7;
+        }
+
+        if (preg_match('/(\d+)\s*months?/', $targetAge, $matches)) {
+            return (int) $matches[1] * 30;
+        }
+
+        if (preg_match('/(\d+)\s*years?/', $targetAge, $matches)) {
+            return (int) $matches[1] * 365;
+        }
+
+        return 0;
+    }
+    // appointment form ka sara kaam 
+
+
+    
+
+ 
+
+   
 
 
 }

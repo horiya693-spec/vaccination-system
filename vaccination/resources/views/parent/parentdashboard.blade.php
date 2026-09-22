@@ -13,6 +13,7 @@
             <div class="page-heading-copy">
               <div>
                 <p class="eyebrow mb-1">Overview</p>
+                <a href="{{route('createchild')}}" class="btn btn-success">Add New +</a>
                 <h1><!-- Check if a user is actually logged in first -->
 @if(Auth::check())
     <p>Welcome, <strong>{{ Auth::user()->name }}</strong>!</p>

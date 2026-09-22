@@ -38,7 +38,7 @@ class parentController extends Controller
     ]);
  $addchild=child::create($data);
         if($addchild){
-       return redirect()->route('website');
+       return redirect()->route('childprofile');
 
 }
 else{

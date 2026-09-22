@@ -104,10 +104,44 @@ public function store(Request $request)
         // 4. Data ko blade view (dashboard table) par bhejein
         return view('Admin/allchildren', compact('children'));
     }
-    function addhospitals(){
-        $data= hospital::all();
-return view('Admin/addhospitals');
+
+// Add Hospital form show karne ke liye
+public function addhospitals()
+{
+    return view('Admin.addhospitals');
+}
+
+
+// Hospital data database mein save karne ke liye
+public function storehospital(Request $req)
+{
+    $data = $req->validate([
+
+        "name" => "required",
+
+        "email" => "required|email",
+
+        "password" => "required|max:8",
+
+        "address" => "required",
+
+        "phone" => "required"
+
+    ]);
+
+
+    $hospital = Hospital::create($data);
+
+
+    if ($hospital) {
+
+        return redirect()
+            ->route('addhospitals')
+            ->with('success', 'Hospital Added Successfully');
 
     }
+}
+
+
 }
 

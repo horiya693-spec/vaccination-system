@@ -4,11 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hospital extends Model
+class hospital extends Model
 {
-    protected $fillable = [
-        'name',
-        'location',
-        'image',
-    ];
+    protected $fillable = [ 'name', 'email', 'password', 'address','phone' ];
 }

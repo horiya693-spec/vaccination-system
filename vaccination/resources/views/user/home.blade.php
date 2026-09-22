@@ -38,6 +38,56 @@ body {
 }
 
 /* Navbar */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.welcome-user {
+    color: #087f8c;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.dashboard-btn {
+    background: #087f8c;
+    color: white;
+    padding: 9px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.dashboard-btn:hover {
+    background: #05636d;
+    transform: translateY(-2px);
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-btn {
+    background: transparent;
+    color: #087f8c;
+    border: 1px solid #087f8c;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #087f8c;
+    color: white;
+}
 
 .navbar {
     height: 75px;
@@ -719,10 +769,27 @@ footer p {
 @endguest
 
 @auth
-    <a href="/profile" class="welcome-user">
-        Hey, {{ Auth::user()->name }} !
+<div class="user-actions">
+
+    <span class="welcome-user">
+        Hey, {{ Auth::user()->name }}!
+    </span>
+
+    <a href="{{route('parentdashboard')}}" class="dashboard-btn">
+        View Dashboard
     </a>
+
+    <form action="{{ route('logout') }}" method="POST" class="logout-form">
+        @csrf
+        <button type="submit" class="logout-btn">
+            Logout
+        </button>
+    </form>
+
+</div>
 @endauth
+
+
     </header>
 
 

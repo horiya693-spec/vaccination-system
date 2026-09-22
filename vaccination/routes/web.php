@@ -11,7 +11,7 @@ use App\Http\Middleware\validuser;
 use Illuminate\Support\Facades\Route;
 
 //---------------------user web-------------------
-Route::get('/user/web',[userController::class,'index'])->name('website');
+Route::get('/',[userController::class,'index'])->name('website');
 
 
 //-----------------ALL AUTH Route--------------------------------  
@@ -43,7 +43,6 @@ Route::get('admin/deleteuser/{id}',[adminController::class,'deleteuser'])->name(
 //form view         
 Route::get('/admin/vaccine/create', [adminController::class, 'create'])->name('admin.vaccine.create');
 Route::get('/admin/vaccine/allchildren', [adminController::class, 'fetchchildren'])->name('fetchchildren');
-Route::get('admin/addhospitals',[adminController::class,'addhospitals'])->name('addhospitals');
 
 });
 // Form  logic
@@ -66,7 +65,6 @@ Route::post('user/updatechild/{id}',[parentController::class,'updatechild'])->na
 
 //------------------------hospital dashbaor--------------------------
 
-Route::get('/hospital/dashboard',[hospitalController::class,'dashboard'])->name('hospitaldashboard')->middleware(hospitalmember::class);
 
 
 
@@ -94,10 +92,25 @@ Route::get('/location', [UserController::class, 'location']);
 
 Route::get('/hospitals',[userController::class,'hospitals'])->name('hospitals');
 //hospitalDashboard view
-Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('dashboard')->middleware(validuser::class);
+Route::get('/hospital/dashboard',[adminController::class,'dashboard'])->name('hospital')->middleware(validuser::class);
 
 
 Route::get('/auth.register', function () {
     return view('auth.register');
 });
+
+// Add Hospital form
+Route::get(
+    'admin/addhospitals',
+    [adminController::class, 'addhospitals']
+)->name('addhospitals');
+
+
+// Save Hospital
+Route::post(
+    'admin/addhospitals',
+    [adminController::class, 'storehospital']
+)->name('storehospital');
+
+
 

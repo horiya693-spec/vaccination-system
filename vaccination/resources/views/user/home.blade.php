@@ -951,7 +951,7 @@ footer p {
                     <img src="{{ asset('Admin/assets/images/png/HEPA.jpg') }}" alt="">
                 </div>
                 <h3>Hepatitis B</h3>
-                <p>Helps protect against hepatitis B infection.</p>
+                <p>Helps protect against hepatitis B.</p>
                 <button onclick="showInfo('Hepatitis B Vaccine')">
                     View Details
                 </button>

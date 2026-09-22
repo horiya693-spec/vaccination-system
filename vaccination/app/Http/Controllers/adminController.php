@@ -139,7 +139,7 @@ public function storehospital(Request $req)
             ->route('addhospitals')
             ->with('success', 'Hospital Added Successfully');
 
-    }
+    }}
 
   //  yeh route ha admin ke booking ke requst ke liye
   
@@ -186,6 +186,6 @@ public function storehospital(Request $req)
 
 
 
-}
+
 
 

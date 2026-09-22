@@ -12,6 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('appointment', function (Blueprint $table) {
+
+            $table->id();
+
+
            // Child Relationship
     $table->unsignedBigInteger('child_id');
     $table->foreign('child_id')->references('id')->on('children')->cascadeOnDelete();

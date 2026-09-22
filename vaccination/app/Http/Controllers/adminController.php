@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\hospital;
 use App\Models\child;
 use App\Models\User;
@@ -101,7 +102,6 @@ public function store(Request $request)
         // 3. Saara data fetch karein (Ya paginate use karein agar data zyada hai)
         $children    = $query->get();
 
-        // 4. Data ko blade view (dashboard table) par bhejein
         return view('Admin/allchildren', compact('children'));
     }
 
@@ -140,8 +140,52 @@ public function storehospital(Request $req)
             ->with('success', 'Hospital Added Successfully');
 
     }
+
+  //  yeh route ha admin ke booking ke requst ke liye
+  
+    public function admin()
+    {
+        $appointments = booking::with([
+            'child',
+            'vaccination',
+            'hospital'
+        ])
+        ->where('status', 'Pending')
+        ->latest()
+        ->get();
+
+        return view('admin.request', compact('appointments'));
+    }
+
+    public function approve($id)
+    {
+        $appointment = Booking::findOrFail($id);
+
+        $appointment->status = 'Approved';
+        $appointment->save();
+
+        return back()->with(
+            'success',
+            'Appointment approved successfully.'
+        );
+    }
+
+    public function reject($id)
+    {
+        $appointment = Booking::findOrFail($id);
+
+        $appointment->status = 'Rejected';
+        $appointment->save();
+
+        return back()->with(
+            'success',
+            'Appointment rejected successfully.'
+        );
+    }
 }
 
 
+
 }
+
 

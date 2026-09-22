@@ -101,7 +101,6 @@
 </div>
 </div>
 
-{{-- Script to handle unlocking fields one by one --}}
 <script>
     document.querySelectorAll('.btn-edit-field').forEach(button => {
         button.addEventListener('click', function() {

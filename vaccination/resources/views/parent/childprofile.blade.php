@@ -12,7 +12,6 @@
         </div>
     </div>
 @else
-    <!-- This loop will run automatically for every child the parent has -->
     @foreach($children as $child)
         <div class="card m-5"> 
             <h5 class="card-header"> 

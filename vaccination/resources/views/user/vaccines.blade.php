@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -395,6 +396,10 @@
         </div>
 
     </header>
+
+@extends('user.sidebar')
+@section('user')
+
 
 
 
@@ -1372,4 +1377,8 @@
 
 </body>
 
+
 </html>
+</html>
+@endsection
+

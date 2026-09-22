@@ -29,73 +29,91 @@
     border-radius: 5px;
     padding: 10px; /* Adds space inside the box */
 }
+.admin-navbar {
+    height: 75px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
 
+    background: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Sidebar Toggle - LEFT */
+.sidebar-toggle {
+    position: relative;
+    z-index: 10;
+
+    border: none;
+    background: transparent;
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    cursor: pointer;
+}
+
+.sidebar-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #333;
+    border-radius: 2px;
+}
+
+/* VacciCare - EXACT CENTER */
+.logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: 25px;
+    font-weight: bold;
+    color: #087f8c;
+
+    white-space: nowrap;
+}
+
+.logo span {
+    font-size: 27px;
+}
 
 </style>
-<body>
-  
- <div class="admin-main">
-      <nav class="navbar admin-navbar navbar-expand bg-white">
-        <div class="container-fluid px-3 px-lg-4">
-          <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="adminSidebar" aria-expanded="true" aria-label="Toggle sidebar">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+<nav class="navbar admin-navbar bg-white">
 
-          <form class="d-none d-md-flex ms-3 flex-grow-1" role="search">
-            <input class="form-control search-input" type="search" placeholder="Search users, orders, reports" aria-label="Search">
-          </form>
-
-          <div class="navbar-actions ms-auto">
-            <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" title="Switch color theme">
-              <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
-            </button>
-            <div class="dropdown">
-              <button class="icon-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
-                <span class="notification-dot"></span>
-                <i class="bi bi-bell" aria-hidden="true"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end notification-menu">
-                <div class="dropdown-header fw-bold text-body">Notifications</div>
-                <a class="dropdown-item" href="users.html">
-                  <span class="notification-title">New user registered</span>
-                  <span class="notification-time">4 minutes ago</span>
-                </a>
-                <a class="dropdown-item" href="charts.html">
-                  <span class="notification-title">Revenue target reached</span>
-                  <span class="notification-time">32 minutes ago</span>
-                </a>
-                <a class="dropdown-item" href="settings.html">
-                  <span class="notification-title">Security review completed</span>
-                  <span class="notification-time">1 hour ago</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="dropdown">
-              <button class="profile-button dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-               
-            
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                <li><a class="dropdown-item" href="settings.html">Account settings</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><form method="POST" action="{{ route('logout') }}" class="block">
-    <!-- Required security token for Laravel's session state tracking -->
-    @csrf
-    
-    <button type="submit" class="btn">
-        <!-- Visual Anchor: Logout Icon -->
-      
-        Sign Out
+    <!-- Sidebar Toggle - Left -->
+    <button
+        class="sidebar-toggle"
+        type="button"
+        data-sidebar-toggle
+        aria-controls="adminSidebar"
+        aria-expanded="true"
+        aria-label="Toggle sidebar"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
     </button>
-</form></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+
+    <!-- Brand Name - Center -->
+    <div class="logo">
+        <span>💉</span> VacciCare
+    </div>
+
+</nav>
+
+
+
+
+
       </nav>
   <div class="admin-shell">
     <div class="sidebar-backdrop" data-sidebar-close></div>
@@ -124,7 +142,7 @@
           <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
           <span class="nav-text">Upcoming Vaccination</span>
         </a>
-        <a class="nav-link" href="profile.html">
+        <a class="nav-link" href="{{route('parent.vaccinations')}}">
           <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
           <span class="nav-text">Vaccination</span>
         </a>

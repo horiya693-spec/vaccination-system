@@ -1,7 +1,11 @@
 @extends('admin.sidebar')
 
 @section('admin')
-
+<style>
+    .btn{
+        color: black;
+    }
+</style>
 <div class="container py-4">
 
     <h2 class="mb-4">Appointment Requests</h2>
@@ -67,37 +71,28 @@
                                 <td>
 
                                     <div class="d-flex gap-2">
+<form
+    action="{{ route('admin.appointment.approve', ['id' => $appointment->id]) }}"
+    method="POST"
+>
+    @csrf
 
-                                        {{-- Approve --}}
-                                        <form
-                                            action="{{ route('admin.appointment.approve', $appointment->id) }}"
-                                            method="POST"
-                                        >
-                                            @csrf
+    <button type="submit" class="btn btn-success btn-sm">
+        Approve
+    </button>
+</form>
 
-                                            <button
-                                                type="submit"
-                                                class="btn btn-success btn-sm"
-                                            >
-                                                Approve
-                                            </button>
-                                        </form>
+  {{-- Reject --}}
+   <form
+    action="{{ route('admin.appointment.reject', ['id' => $appointment->id]) }}"
+    method="POST"
+>
+    @csrf
 
-
-                                        {{-- Reject --}}
-                                        <form
-                                            action="{{ route('admin.appointment.reject', $appointment->id) }}"
-                                            method="POST"
-                                        >
-                                            @csrf
-
-                                            <button
-                                                type="submit"
-                                                class="btn btn-danger btn-sm"
-                                            >
-                                                Reject
-                                            </button>
-                                        </form>
+    <button type="submit" class="btn btn-danger btn-sm">
+        Reject
+    </button>
+</form>
 
                                     </div>
 

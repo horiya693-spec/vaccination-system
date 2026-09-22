@@ -32,6 +32,5 @@ class hospital extends Model
         return $this->hasMany(Booking::class, 'hospital_id');
     }
 
-    protected $fillable = [ 'name', 'email', 'password', 'address','phone' ];
 
 }

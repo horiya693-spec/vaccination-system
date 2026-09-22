@@ -1,5 +1,4 @@
-
- @extends('parent.sidebard')
+@extends('parent.sidebard')
  @section('parent')
  
  
@@ -24,7 +23,6 @@
             </div>
           </div>
 @if($children->isEmpty())
-    <!-- This card shows UP ONLY IF the parent has NO children registered -->
     <div class="card m-5 border-danger">
         <h5 class="card-header text-danger">No Children Registered</h5>
         <div class="card-body">

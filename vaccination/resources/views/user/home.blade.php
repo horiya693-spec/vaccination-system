@@ -1,6 +1,5 @@
 
-@extends('user.navbar')
-@section('user')
+
 
 
 
@@ -781,12 +780,29 @@ footer p {
         Hey, {{ Auth::user()->name }}!
     </span>
 
-    <a href="{{route('parentdashboard')}}" class="dashboard-btn">
-        View Dashboard
-    </a>
+    @if(Auth::user()->role == 'admin')
+
+        <a href="{{ route('dashboard') }}" class="dashboard-btn">
+            View Dashboard
+        </a>
+
+    @elseif(Auth::user()->role == 'parent')
+
+        <a href="{{ route('parentdashboard') }}" class="dashboard-btn">
+            View Dashboard
+        </a>
+
+   @elseif(Auth::user()->role == 'hospitalstaff')
+
+        <a href="{{ route('hospitaldashboard') }}" class="dashboard-btn">
+            View Dashboard
+        </a>
+
+    @endif
 
     <form action="{{ route('logout') }}" method="POST" class="logout-form">
         @csrf
+
         <button type="submit" class="logout-btn">
             Logout
         </button>
@@ -1033,4 +1049,3 @@ footer p {
 
 </script>
 </html>
-@endsection

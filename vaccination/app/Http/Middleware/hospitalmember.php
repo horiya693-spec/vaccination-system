@@ -21,7 +21,7 @@ class hospitalmember
             return $next($request);
         }
         else{
-            return redirect()->route("hospitaldashboard");
+            return redirect()->route("website");
         }}
         else{
             return redirect()->route('loginform');

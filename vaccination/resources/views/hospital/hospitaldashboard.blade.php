@@ -1,3 +1,4 @@
+
 @extends('hospital.sidebar')
 
 @section('hospital')
@@ -11,10 +12,6 @@
 
             <h1>
                 Hospital Dashboard
-</h1>
-
-            <h1 class="mb-2">
-            
             </h1>
 
             <p class="text-muted mb-0">
@@ -30,7 +27,9 @@
             {{-- Hospital --}}
             <div class="col-md-4">
                 <div class="card shadow-sm h-100">
+
                     <div class="card-body">
+
                         <p class="text-muted mb-1">
                             Hospital
                         </p>
@@ -38,15 +37,19 @@
                         <h4 class="mb-0">
                             {{ $hospital->name ?? 'Hospital' }}
                         </h4>
+
                     </div>
+
                 </div>
             </div>
 
 
             {{-- Available Vaccines --}}
             <div class="col-md-4">
-                <div class="card  shadow-sm h-100">
+                <div class="card shadow-sm h-100">
+
                     <div class="card-body">
+
                         <p class="text-muted mb-1">
                             Available Vaccines
                         </p>
@@ -54,7 +57,9 @@
                         <h2 class="mb-0">
                             {{ $availableVaccines ?? 0 }}
                         </h2>
+
                     </div>
+
                 </div>
             </div>
 
@@ -62,7 +67,9 @@
             {{-- Pending Appointments --}}
             <div class="col-md-4">
                 <div class="card shadow-sm h-100">
+
                     <div class="card-body">
+
                         <p class="text-muted mb-1">
                             Pending Appointments
                         </p>
@@ -70,7 +77,9 @@
                         <h2 class="mb-0">
                             {{ $pendingAppointments ?? 0 }}
                         </h2>
+
                     </div>
+
                 </div>
             </div>
 
@@ -81,34 +90,48 @@
         <div class="card border-0 shadow-sm mb-4">
 
             <div class="card-header bg-white py-3">
+
                 <h5 class="mb-0">
                     Hospital Information
                 </h5>
+
             </div>
+
 
             <div class="card-body">
 
                 <div class="row">
 
                     <div class="col-md-6 mb-3">
+
                         <strong>Hospital Name</strong>
+
                         <p class="text-muted mb-0">
                             {{ $hospital->name ?? 'Not added' }}
                         </p>
+
                     </div>
 
+
                     <div class="col-md-6 mb-3">
+
                         <strong>Phone</strong>
+
                         <p class="text-muted mb-0">
                             {{ $hospital->phone ?? 'Not added' }}
                         </p>
+
                     </div>
 
+
                     <div class="col-md-12">
+
                         <strong>Address</strong>
+
                         <p class="text-muted mb-0">
                             {{ $hospital->address ?? 'Not added' }}
                         </p>
+
                     </div>
 
                 </div>
@@ -122,10 +145,13 @@
         <div class="card border-0 shadow-sm">
 
             <div class="card-header bg-white py-3">
+
                 <h5 class="mb-0">
                     Recent Appointments
                 </h5>
+
             </div>
+
 
             <div class="card-body p-0">
 
@@ -133,16 +159,36 @@
 
                     <div class="table-responsive">
 
-                        <table class="table table-hover mb-0">
+                        <table class="table table-hover align-middle mb-0">
 
                             <thead class="table-light">
+
                                 <tr>
-                                    <th>Child</th>
-                                    <th>Vaccine</th>
-                                    <th>Appointment Date</th>
-                                    <th>Status</th>
+
+                                    <th class="px-3">
+                                        Child
+                                    </th>
+
+                                    <th>
+                                        Vaccine
+                                    </th>
+
+                                    <th>
+                                        Appointment Date
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
                                 </tr>
+
                             </thead>
+
 
                             <tbody>
 
@@ -150,18 +196,25 @@
 
                                     <tr>
 
-                                        <td>
+                                        {{-- Child --}}
+                                        <td class="px-3">
                                             {{ $appointment->child->Child_Name ?? 'N/A' }}
                                         </td>
 
+
+                                        {{-- Vaccine --}}
                                         <td>
                                             {{ $appointment->vaccination->Vaccine_Name ?? 'N/A' }}
                                         </td>
 
+
+                                        {{-- Appointment Date --}}
                                         <td>
                                             {{ $appointment->appointment_date ?? 'N/A' }}
                                         </td>
 
+
+                                        {{-- Status --}}
                                         <td>
 
                                             @if($appointment->status === 'Approved')
@@ -191,16 +244,30 @@
                                             @endif
 
                                         </td>
-<td><form action="{{ route('hospital.appointment.complete', $appointment->id) }}"
-      method="POST">
 
-    @csrf
 
-    <button type="submit" class="btn btn-success">
-        Mark as Vaccinated
-    </button>
+                                        {{-- Action --}}
+                                        <td>
 
-</form></td>
+                                            <form
+                                                action="{{ route('hospital.appointment.complete', $appointment->id) }}"
+                                                method="POST"
+                                                class="m-0"
+                                            >
+
+                                                @csrf
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-success btn-sm"
+                                                >
+                                                    Mark as Vaccinated
+                                                </button>
+
+                                            </form>
+
+                                        </td>
+
                                     </tr>
 
                                 @endforeach
@@ -251,6 +318,5 @@
     </div>
 
 </footer>
-
 
 @endsection

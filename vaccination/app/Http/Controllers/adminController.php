@@ -157,31 +157,25 @@ public function storehospital(Request $req)
         return view('admin.request', compact('appointments'));
     }
 
-    public function approve($id)
-    {
-        $appointment = Booking::findOrFail($id);
+   public function approve($id)
+{
+    $appointment = Booking::findOrFail($id);
 
-        $appointment->status = 'Approved';
-        $appointment->save();
+    $appointment->status = 'Approved';
+    $appointment->save();
 
-        return back()->with(
-            'success',
-            'Appointment approved successfully.'
-        );
-    }
+    return back()->with('success', 'Appointment approved successfully.');
+}
 
-    public function reject($id)
-    {
-        $appointment = Booking::findOrFail($id);
+public function reject($id)
+{
+    $appointment = Booking::findOrFail($id);
 
-        $appointment->status = 'Rejected';
-        $appointment->save();
+    $appointment->status = 'Rejected';
+    $appointment->save();
 
-        return back()->with(
-            'success',
-            'Appointment rejected successfully.'
-        );
-    }
+    return back()->with('success', 'Appointment rejected successfully.');
+}
 }
 
 

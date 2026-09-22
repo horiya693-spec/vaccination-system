@@ -38,7 +38,8 @@ Route::get('admin/edituser/{id}',[adminController::class,'edituser'])->name('edi
 Route::post('admin/update/{id}',[adminController::class,'updateuser'])->name('update');
 // deleteuser
 Route::get('admin/deleteuser/{id}',[adminController::class,'deleteuser'])->name('deleteuser');
-
+Route::post('/admin/vaccine/store', [adminController::class, 'store'])->name('admin.vaccine.store');
+Route::get('/admin/vaccine/all', [adminController::class, 'fetchvaccine'])->name('allvaccine');
 //vacine upload
 //form view         
 Route::get('/admin/vaccine/create', [adminController::class, 'create'])->name('admin.vaccine.create');
@@ -48,13 +49,25 @@ Route::get('admin/addhospitals',[adminController::class,'addhospitals'])->name('
 Route::get('/admin/appointments',[adminController::class, 'admin'])->name('admin.appointments');
 
 
-Route::post('/admin/appointments/{id}/approve',[adminController::class, 'approve'])->name('admin.appointment.approve');
+Route::post(
+    'admin/appointments/{id}/approve',
+    [adminController::class, 'approve']
+)->name('admin.appointment.approve');
 
-Route::post('/admin/appointments/{id}/reject',[adminController::class, 'reject'])->name('admin.appointment.reject');
+Route::post(
+    'admin/appointments/{id}/reject',
+    [adminController::class, 'reject']
+)->name('admin.appointment.reject');
 });
+
+
+
+
+
+
+
 // Form  logic
-Route::post('/admin/vaccine/store', [adminController::class, 'store'])->name('admin.vaccine.store');
-Route::get('/admin/vaccine/all', [adminController::class, 'fetchvaccine'])->name('allvaccine');
+
 
 //--------------------Parents dashbaord view---------------------------
  Route::middleware([parentverify::class])->group(function () {
@@ -81,7 +94,6 @@ Route::post('user/updatechild/{id}',[parentController::class,'updatechild'])->na
 Route::middleware([hospitalmember::class])->group(function () {
 
 
-Route::get('/hospital/dashboard',[hospitalController::class,'dashboardhospital'])->name('hospitaldashboard');
 
 
 
@@ -144,5 +156,8 @@ Route::post(
     [adminController::class, 'storehospital']
 )->name('storehospital');
 
+
+
+Route::get('/hospital/dashboard',[hospitalController::class,'dashboardhospital'])->name('hospitaldashboard');
 
 

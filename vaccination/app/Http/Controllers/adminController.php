@@ -14,9 +14,29 @@ class adminController extends Controller
     // view for dasboard
     function dashboard(){
     $totalUsers = User::count();
+
     $totalchild = child::count();
 
-    return view('Admin.admindashboard', compact('totalUsers','totalchild'));
+    $totalHospital = hospital::count();
+
+    $totalVaccine = vaccination::count();
+
+    $appointments = booking::with([
+        'child',
+        'vaccination',
+        'hospital'
+    ])
+    ->where('status', 'Pending')
+    ->latest()
+    ->get();
+
+    return view('admin.admindashboard', compact(
+        'totalUsers',
+        'totalchild',
+        'totalHospital',
+        'totalVaccine',
+        'appointments'
+));
     }
     //all users data fetch-------------
     function fetch(){
@@ -140,7 +160,7 @@ public function storehospital(Request $req)
             ->with('success', 'Hospital Added Successfully');
 
     }
-
+}
   //  yeh route ha admin ke booking ke requst ke liye
   
     public function admin()
@@ -186,6 +206,6 @@ public function storehospital(Request $req)
 
 
 
-}
+
 
 

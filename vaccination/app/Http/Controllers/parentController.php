@@ -101,91 +101,121 @@ return view('parent/childprofile',compact('children'));
 
 //chld vaccines 
 
-    public function childvaccine()
-    {
-        // Logged-in parent
-        $parentId = Auth::id();
+  
+public function childvaccine()
+{
+    // Logged-in parent
+    $parentId = Auth::id();
 
-        // Sirf is parent ke children
-        $children = child::where('Parent_Id', $parentId)->get();
+    // Sirf is parent ke children
+    $children = child::where('Parent_Id', $parentId)->get();
 
-        // Saari vaccines
-        $vaccinations = vaccination::all();
+    // Saari vaccines
+    $vaccinations = vaccination::all();
 
-        $data = [];
+    $data = [];
 
-        foreach ($children as $child) {
+    foreach ($children as $child) {
 
-            $vaccineList = [];
+        $vaccineList = [];
 
-            foreach ($vaccinations as $vaccine) {
+        foreach ($vaccinations as $vaccine) {
 
-                // Target Age ko days mein convert hogyi
-                $days = $this->targetAgeToDays($vaccine->Target_Age);
+            // Target Age ko days mein convert karna
+            $days = $this->targetAgeToDays($vaccine->Target_Age);
 
-                // Child ki DOB or target age
-                $dueDate = Carbon::parse($child->DOB)->addDays($days);
+            // Child ki DOB + target age
+            $dueDate = Carbon::parse($child->DOB)->addDays($days);
 
-                // vaccine complet ha yah nahi
-               $completed = vaccineschild::where('child_id', $child->id)
-    ->where('vaccination_id', $vaccine->id)
-    ->where('status', 'Completed')
-    ->first();
+            // Vaccine complete hai ya nahi
+            $completed = vaccineschild::where('child_id', $child->id)
+                ->where('vaccination_id', $vaccine->id)
+                ->where('status', 'Completed')
+                ->first();
 
-                // Status karna
-                if ($completed) {
 
-                    $status = 'Completed';
+            // Appointment check karna
+            $appointment = booking::where('child_id', $child->id)
+                ->where('vaccination_id', $vaccine->id)
+                ->latest()
+                ->first();
 
-                } elseif ($dueDate->isPast() || $dueDate->isToday()) {
 
-                    $status = 'Due';
+            // Vaccine ka status
+            if ($completed) {
 
-                } else {
+                $status = 'Completed';
 
-                    $status = 'Upcoming';
-                }
+            } elseif ($dueDate->isPast() || $dueDate->isToday()) {
 
-                $vaccineList[] = [
-                    'vaccine' => $vaccine,
-                    'due_date' => $dueDate,
-                    'status' => $status,
-                    'completed' => $completed,
-                ];
+                $status = 'Due';
+
+            } else {
+
+                $status = 'Upcoming';
             }
 
-            $data[] = [
-                'child' => $child,
-                'vaccines' => $vaccineList,
+
+            // Vaccine list mein data add karna
+            $vaccineList[] = [
+
+                'vaccine' => $vaccine,
+
+                'due_date' => $dueDate,
+
+                'status' => $status,
+
+                'completed' => $completed,
+
+                'appointment' => $appointment,
+
             ];
         }
 
-        return view('parent.vaccinations', compact('data'));
+
+        $data[] = [
+
+            'child' => $child,
+
+            'vaccines' => $vaccineList,
+
+        ];
     }
 
 
-    private function targetAgeToDays($targetAge)
-    {
-        $targetAge = strtolower(trim($targetAge));
+    return view('parent.vaccinations', compact('data'));
+}
 
-        if ($targetAge === 'at birth') {
-            return 0;
-        }
 
-        if (preg_match('/(\d+)\s*weeks?/', $targetAge, $matches)) {
-            return (int) $matches[1] * 7;
-        }
 
-        if (preg_match('/(\d+)\s*months?/', $targetAge, $matches)) {
-            return (int) $matches[1] * 30;
-        }
+private function targetAgeToDays($targetAge)
+{
+    $targetAge = strtolower(trim($targetAge));
 
-        if (preg_match('/(\d+)\s*years?/', $targetAge, $matches)) {
-            return (int) $matches[1] * 365;
-        }
-
+    // At Birth
+    if ($targetAge === 'at birth') {
         return 0;
     }
+
+    // Weeks
+    if (preg_match('/(\d+)\s*weeks?/', $targetAge, $matches)) {
+        return (int) $matches[1] * 7;
+    }
+
+    // Months
+    if (preg_match('/(\d+)\s*months?/', $targetAge, $matches)) {
+        return (int) $matches[1] * 30;
+    }
+
+    // Years
+    if (preg_match('/(\d+)\s*years?/', $targetAge, $matches)) {
+        return (int) $matches[1] * 365;
+    }
+
+    return 0;
+}
+
+
     // appointment form ka sara kaam 
 
 

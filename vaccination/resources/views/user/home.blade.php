@@ -1,6 +1,4 @@
 
-@extends('user.navbar')
-@section('user')
 
 
 
@@ -1033,4 +1031,3 @@ footer p {
 
 </script>
 </html>
-@endsection

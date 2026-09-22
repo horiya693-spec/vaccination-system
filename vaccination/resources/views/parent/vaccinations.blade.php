@@ -169,22 +169,68 @@
         </td>
 
         
+
 <td>
+
     @if($item['status'] == 'Due')
 
-        <a href="{{ route('appointment.create', [
-            'child_id' => $child->id,
-            'vaccination_id' => $item['vaccine']->id
-        ]) }}"
-        class="btn btn-primary">
-            Book Appointment
-        </a>
+        {{-- Appointment already exists --}}
+        @if($item['appointment'])
+
+            @if($item['appointment']->status == 'Pending')
+
+                <span class="btn btn-warning btn-sm fs-5 p-2">
+                    pending
+                    <br>
+                  
+                </span>
+
+
+            @elseif($item['appointment']->status == 'Approved')
+
+                <span class="btn btn-success btn-sm">
+                    Appointment Approved
+                </span>
+
+
+            @elseif($item['appointment']->status == 'Rejected')
+
+                <a href="{{ route('appointment.create', [
+                    'child_id' => $child->id,
+                    'vaccination_id' => $item['vaccine']->id
+                ]) }}"
+                class="btn btn-primary">
+
+                    Book Appointment
+
+                </a>
+
+            @endif
+
+
+        @else
+
+            {{-- No appointment yet --}}
+
+            <a href="{{ route('appointment.create', [
+                'child_id' => $child->id,
+                'vaccination_id' => $item['vaccine']->id
+            ]) }}"
+            class="btn btn-primary">
+
+                Book Appointment
+
+            </a>
+
+        @endif
+
 
     @elseif($item['status'] == 'Completed')
 
         <span class="completed">
             Vaccinated
         </span>
+
 
     @else
 
@@ -193,7 +239,10 @@
         </span>
 
     @endif
+
 </td>
+
+
 
         
 

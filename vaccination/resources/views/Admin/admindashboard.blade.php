@@ -1,237 +1,601 @@
 @extends('Admin.sidebar')
+
 @section('admin')
- 
- 
- 
- 
 
-      <main class="dashboard-content">
-        <div class="container-fluid px-3 px-lg-4 py-4"> 
-          <div class="page-heading">
-            <div class="page-heading-copy">
-              <span class="page-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
-              <div>
-                <p class="eyebrow mb-1">Overview</p>
-                <h1><!-- Check if a user is actually logged in first -->
-@if(Auth::check())
-    <p>Welcome, <strong>{{ Auth::user()->name }}</strong>!</p>
-@endif
-</h1>
-                <p class="text-muted mb-0">Monitor performance, Parents, Children, and hospital from one clean workspace.</p>
-              </div>
-            </div>
-          </div>
+<div class="container-fluid px-3 px-lg-4 py-4">
 
-          <section class="row g-3 mt-1" aria-label="Dashboard metrics">
-            <div class="col-12 col-sm-6 col-xl-3">
-              <article class="metric-card metric-primary">
-                <div class="metric-top">
-                  <span class="metric-label"><p>Total Registered Users: </p></span>
-                  <span class="metric-icon"><i class="bi bi-bag-check" aria-hidden="true"></i></span>
-                  
-                </div>
-                <div class="metric-value"> <strong><p> <strong>{{ $totalUsers }}</strong></p>
-</strong></div>
-                
-                <div class="metric-meta">
-                
-                  <span>from last month</span>
-                </div>
-              </article>
+    {{-- ===================== PAGE HEADING ===================== --}}
+    <div class="page-heading mb-4">
+
+        <div class="page-heading-copy">
+
+            <span class="page-icon">
+                <i class="bi bi-speedometer2" aria-hidden="true"></i>
+            </span>
+
+            <div>
+
+                <p class="eyebrow mb-1">
+                    Overview
+                </p>
+
+                <h1>
+                    @if(Auth::check())
+                        Welcome, <strong>{{ Auth::user()->name }}</strong>!
+                    @endif
+                </h1>
+
+                <p class="text-muted mb-0">
+                    Monitor Parents, Children, Hospitals, Vaccines and Appointments
+                    from one clean workspace.
+                </p>
+
             </div>
 
-            <div class="col-12 col-sm-6 col-xl-3">
-              <article class="metric-card metric-success">
-                <div class="metric-top">
-                  <span class="metric-label"><p>Total Registered children: </p></span>
-                  <span class="metric-icon"><i class="bi bi-bag-check" aria-hidden="true"></i>
-                </span>
-                </div>
-                  <div class="metric-value"> <strong><p> <strong>{{ $totalchild }}</strong></p>
-</strong></div>
-                
-                <div class="metric-meta">
-                  <span class="text-success"></span>
-                  <span>From Last Month</span>
-                </div>
-              </article>
-            </div>
-
-            <div class="col-12 col-sm-6 col-xl-3">
-              <article class="metric-card metric-warning">
-                <div class="metric-top">
-                  <span class="metric-label"><p>Total Registered Hospital: </p></span>
-                  <span class="metric-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
-                
-                </div>
-                
-                <div class="metric-value"></div>
-                <div class="metric-meta">
-                  <span class="text-success"></span>
-                  <span>over Karachi</span>
-                </div>
-              </article>
-            </div>
-
-            <div class="col-12 col-sm-6 col-xl-3">
-              <article class="metric-card metric-danger">
-                <div class="metric-top">
-                  <span class="metric-label"><P>Total Availible Vaccine:</P></span>
-                  <span class="metric-icon"><i class="bi bi-life-preserver" aria-hidden="true"></i></span>
-                </div>
-                <div class="metric-value"></div>
-                <div class="metric-meta">
-                  <span class="text-danger">3 Unavailible</span>
-                  <span></span>
-                </div>
-              </article>
-            </div>
-          </section>
-
-          <section class="row g-3 mt-1">
-            <div class="col-12 col-xl-8">
-              <div class="panel">
-                <div class="panel-header">
-                  <div>
-                    <h2 class="h5 mb-1 section-title"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i><span>Report of all children get Vaccinated</span></h2>
-                  
-                  </div>
-                  <a class="btn btn-light btn-sm" href="charts.html">View Details</a>
-                </div>
-
-                <div class="chart-bars" aria-label="Sales performance chart">
-                  <div class="chart-column bar-42"><span></span><small>Jan</small></div>
-                  <div class="chart-column bar-58"><span></span><small>Feb</small></div>
-                  <div class="chart-column bar-51"><span></span><small>Mar</small></div>
-                  <div class="chart-column bar-72"><span></span><small>Apr</small></div>
-                  <div class="chart-column bar-66"><span></span><small>May</small></div>
-                  <div class="chart-column bar-83"><span></span><small>Jun</small></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-xl-4">
-              <div class="panel h-100">
-                <div class="panel-header">
-                  <div>
-                    <h2 class="h5 mb-1 section-title"><i class="bi bi-activity" aria-hidden="true"></i><span>Team Activity</span></h2>
-                    <p class="text-muted mb-0">Recent operational updates.</p>
-                  </div>
-                </div>
-
-                <div class="activity-list">
-                  <div class="activity-item"><span class="activity-dot bg-primary"></span><div><p class="mb-1 fw-semibold">New campaign launched</p><p class="text-muted small mb-0">Marketing team published the May offer.</p></div></div>
-                  <div class="activity-item"><span class="activity-dot bg-success"></span><div><p class="mb-1 fw-semibold">Payment batch cleared</p><p class="text-muted small mb-0">246 invoices were processed successfully.</p></div></div>
-                  <div class="activity-item"><span class="activity-dot bg-warning"></span><div><p class="mb-1 fw-semibold">Support queue rising</p><p class="text-muted small mb-0">Average first response time is 18 minutes.</p></div></div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="panel mt-3">
-            <div class="panel-header">
-              <div>
-                <h2 class="h5 mb-1 section-title"><i class="bi bi-people" aria-hidden="true"></i><span>Recent Users</span></h2>
-                <p class="text-muted mb-0">Latest account activity across the workspace.</p>
-              </div>
-              <a class="btn btn-outline-secondary btn-sm" href="users.html">Manage Users</a>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-middle mb-0">
-                <thead><tr><th scope="col">User</th><th scope="col">Role</th><th scope="col">Team</th><th scope="col">Status</th><th scope="col">Joined</th><th scope="col" class="text-end">Action</th></tr></thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img class="avatar-img avatar-sm" src="{{asset('Admin/assets/images/avatar/avatar-1.jpg')}}" alt="Sarah Ahmed">
-                        <div>
-                          <p class="fw-semibold mb-0">Sarah Ahmed</p>
-                          <p class="text-muted small mb-0">sarah@example.com</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Admin</td>
-                    <td>Operations</td>
-                    <td><span class="badge text-bg-success">Active</span></td>
-                    <td>Jan 12, 2026</td>
-                    <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img class="avatar-img avatar-sm" src="{{asset('Admin/assets/images/avatar/avatar-2.jpg')}}" alt="Rafi Khan">
-                        <div>
-                          <p class="fw-semibold mb-0">Rafi Khan</p>
-                          <p class="text-muted small mb-0">rafi@example.com</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Manager</td>
-                    <td>Sales</td>
-                    <td><span class="badge text-bg-success">Active</span></td>
-                    <td>Feb 03, 2026</td>
-                    <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img class="avatar-img avatar-sm" src="{{asset('Admin/assets/images/avatar/avatar-3.jpg')}}" alt="Nadia Islam">
-                        <div>
-                          <p class="fw-semibold mb-0">Nadia Islam</p>
-                          <p class="text-muted small mb-0">nadia@example.com</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Editor</td>
-                    <td>Content</td>
-                    <td><span class="badge text-bg-warning">Pending</span></td>
-                    <td>Mar 18, 2026</td>
-                    <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img class="avatar-img avatar-sm" src="{{asset('Admin/assets/images/avatar/avatar-4.jpg')}}" alt="Mina Torres">
-                        <div>
-                          <p class="fw-semibold mb-0">Mina Torres</p>
-                          <p class="text-muted small mb-0">mina@example.com</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Viewer</td>
-                    <td>Finance</td>
-                    <td><span class="badge text-bg-secondary">Suspended</span></td>
-                    <td>Apr 07, 2026</td>
-                    <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img class="avatar-img avatar-sm" src="{{asset('Admin/assets/images/avatar/avatar-5.jpg')}}" alt="Jon Oliver">
-                        <div>
-                          <p class="fw-semibold mb-0">Jon Oliver</p>
-                          <p class="text-muted small mb-0">jon@example.com</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Analyst</td>
-                    <td>Data</td>
-                    <td><span class="badge text-bg-success">Active</span></td>
-                    <td>Apr 22, 2026</td>
-                    <td class="text-end"><a class="btn btn-light btn-sm" href="user-details.html">View</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
         </div>
-      </main>
 
-      <footer class="admin-footer">
-        <div class="container-fluid px-3 px-lg-4">
-          <span>Copyright 2026 adminHMD. <br> Developed by <a target="_blank" class="fw-bold text-success" href="https://github.com/HasanMahmudDev">Md. Hasan Mahmud</a> • Distributed by <a target="_blank" class="fw-bold text-success" href="https://themewagon.com">ThemeWagon</a> </span>
-          <span>Professional dashboard template.</span>
-        </div>
-      </footer>
     </div>
-    @endsection
+
+
+    {{-- ===================== DASHBOARD CARDS ===================== --}}
+    <section class="row g-3 mt-1" aria-label="Dashboard metrics">
+
+
+        {{-- TOTAL USERS --}}
+        <div class="col-12 col-sm-6 col-xl-3">
+
+            <article class="metric-card metric-primary">
+
+                <div class="metric-top">
+
+                    <span class="metric-label">
+                        Total Registered Users
+                    </span>
+
+                    <span class="metric-icon">
+                        <i class="bi bi-people" aria-hidden="true"></i>
+                    </span>
+
+                </div>
+
+                <div class="metric-value">
+                    <strong>{{ $totalUsers }}</strong>
+                </div>
+
+                <div class="metric-meta">
+                    <span>
+                        Registered Users
+                    </span>
+                </div>
+
+            </article>
+
+        </div>
+
+
+        {{-- TOTAL CHILDREN --}}
+        <div class="col-12 col-sm-6 col-xl-3">
+
+            <article class="metric-card metric-success">
+
+                <div class="metric-top">
+
+                    <span class="metric-label">
+                        Total Registered Children
+                    </span>
+
+                    <span class="metric-icon">
+                        <i class="bi bi-person-hearts" aria-hidden="true"></i>
+                    </span>
+
+                </div>
+
+                <div class="metric-value">
+                    <strong>{{ $totalchild }}</strong>
+                </div>
+
+                <div class="metric-meta">
+                    <span>
+                        Registered Children
+                    </span>
+                </div>
+
+            </article>
+
+        </div>
+
+
+        {{-- TOTAL HOSPITALS --}}
+        <div class="col-12 col-sm-6 col-xl-3">
+
+            <article class="metric-card metric-warning">
+
+                <div class="metric-top">
+
+                    <span class="metric-label">
+                        Total Registered Hospitals
+                    </span>
+
+                    <span class="metric-icon">
+                        <i class="bi bi-hospital" aria-hidden="true"></i>
+                    </span>
+
+                </div>
+
+                <div class="metric-value">
+                    <strong>{{ $totalHospital }}</strong>
+                </div>
+
+                <div class="metric-meta">
+                    <span>
+                        Registered Hospitals
+                    </span>
+                </div>
+
+            </article>
+
+        </div>
+
+
+        {{-- TOTAL VACCINES --}}
+        <div class="col-12 col-sm-6 col-xl-3">
+
+            <article class="metric-card metric-danger">
+
+                <div class="metric-top">
+
+                    <span class="metric-label">
+                        Total Available Vaccines
+                    </span>
+
+                    <span class="metric-icon">
+                        <i class="bi bi-capsule" aria-hidden="true"></i>
+                    </span>
+
+                </div>
+
+                <div class="metric-value">
+                    <strong>{{ $totalVaccine }}</strong>
+                </div>
+
+                <div class="metric-meta">
+                    <span>
+                        Vaccines in System
+                    </span>
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    {{-- ===================== APPOINTMENT REQUESTS ===================== --}}
+    <section class="panel mt-4">
+
+        {{-- PANEL HEADER --}}
+        <div class="panel-header">
+
+            <div>
+
+                <h2 class="h5 mb-1 section-title">
+
+                    <i class="bi bi-calendar-check" aria-hidden="true"></i>
+
+                    <span>
+                        Appointment Requests
+                    </span>
+
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Review and manage pending vaccination appointment requests.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {{-- SUCCESS MESSAGE --}}
+        @if(session('success'))
+
+            <div class="alert alert-success mx-3 mt-3">
+                {{ session('success') }}
+            </div>
+
+        @endif
+
+
+        {{-- ERROR MESSAGE --}}
+        @if(session('error'))
+
+            <div class="alert alert-danger mx-3 mt-3">
+                {{ session('error') }}
+            </div>
+
+        @endif
+
+
+        {{-- APPOINTMENT TABLE --}}
+        <div class="table-responsive">
+
+            <table class="table align-middle mb-0">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>
+                            Child
+                        </th>
+
+                        <th>
+                            Vaccine
+                        </th>
+
+                        <th>
+                            Hospital
+                        </th>
+
+                        <th>
+                            Appointment Date
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    @forelse($appointments as $appointment)
+
+                        <tr>
+
+                            {{-- NUMBER --}}
+                            <td>
+                                {{ $loop->iteration }}
+                            </td>
+
+
+                            {{-- CHILD --}}
+                            <td>
+
+                                @if($appointment->child)
+
+                                    {{ $appointment->child->Child_Name }}
+
+                                @else
+
+                                    <span class="text-muted">
+                                        N/A
+                                    </span>
+
+                                @endif
+
+                            </td>
+
+
+                            {{-- VACCINE --}}
+                            <td>
+
+                                @if($appointment->vaccination)
+
+                                    {{ $appointment->vaccination->Vaccine_Name }}
+
+                                @else
+
+                                    <span class="text-muted">
+                                        N/A
+                                    </span>
+
+                                @endif
+
+                            </td>
+
+
+                            {{-- HOSPITAL --}}
+                            <td>
+
+                                @if($appointment->hospital)
+
+                                    {{ $appointment->hospital->name }}
+
+                                @else
+
+                                    <span class="text-muted">
+                                        N/A
+                                    </span>
+
+                                @endif
+
+                            </td>
+
+
+                            {{-- APPOINTMENT DATE --}}
+                            <td>
+
+                                @if($appointment->appointment_date)
+
+                                    {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
+
+                                @else
+
+                                    <span class="text-muted">
+                                        N/A
+                                    </span>
+
+                                @endif
+
+                            </td>
+
+
+                            {{-- STATUS --}}
+                            <td>
+
+                                <span class="badge text-bg-warning">
+                                    {{ $appointment->status }}
+                                </span>
+
+                            </td>
+
+
+                            {{-- ACTION --}}
+                            <td>
+
+                                <div class="d-flex gap-2">
+
+
+                                    {{-- APPROVE --}}
+                                    <form
+                                        action="{{ route('admin.appointment.approve', $appointment->id) }}"
+                                        method="POST"
+                                    >
+
+                                        @csrf
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-success btn-sm"
+                                        >
+                                            <i class="bi bi-check-circle"></i>
+                                            Approve
+                                        </button>
+
+                                    </form>
+
+
+                                    {{-- REJECT --}}
+                                    <form
+                                        action="{{ route('admin.appointment.reject', $appointment->id) }}"
+                                        method="POST"
+                                    >
+
+                                        @csrf
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger btn-sm"
+                                        >
+                                            <i class="bi bi-x-circle"></i>
+                                            Reject
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                    @empty
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="text-center py-4"
+                            >
+
+                                <i class="bi bi-calendar-x fs-3 d-block mb-2"></i>
+
+                                <span>
+                                    No pending appointment requests.
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    @endforelse
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    {{-- ===================== RECENT USERS ===================== --}}
+    <section class="panel mt-4">
+
+        <div class="panel-header">
+
+            <div>
+
+                <h2 class="h5 mb-1 section-title">
+
+                    <i class="bi bi-people" aria-hidden="true"></i>
+
+                    <span>
+                        Recent Users
+                    </span>
+
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Latest account activity across the system.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table align-middle mb-0">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Role
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Sarah Ahmed
+                        </td>
+
+                        <td>
+                            Admin
+                        </td>
+
+                        <td>
+                            sarah@example.com
+                        </td>
+
+                        <td>
+                            <span class="badge text-bg-success">
+                                Active
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Rafi Khan
+                        </td>
+
+                        <td>
+                            Parent
+                        </td>
+
+                        <td>
+                            rafi@example.com
+                        </td>
+
+                        <td>
+                            <span class="badge text-bg-success">
+                                Active
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Nadia Islam
+                        </td>
+
+                        <td>
+                            Parent
+                        </td>
+
+                        <td>
+                            nadia@example.com
+                        </td>
+
+                        <td>
+                            <span class="badge text-bg-warning">
+                                Pending
+                            </span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+{{-- ===================== FOOTER ===================== --}}
+<footer class="admin-footer">
+
+    <div class="container-fluid px-3 px-lg-4">
+
+        <span>
+            Copyright 2026 adminHMD.
+            <br>
+            Developed by
+            <a
+                target="_blank"
+                class="fw-bold text-success"
+                href="https://github.com/HasanMahmudDev"
+            >
+                Md. Hasan Mahmud
+            </a>
+        </span>
+
+        <span>
+            VacciCare Admin Dashboard
+        </span>
+
+    </div>
+
+</footer>
+
+
+@endsection
+```

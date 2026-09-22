@@ -46,12 +46,12 @@
   function getPreferredTheme(storageAvailable) {
     var savedTheme = storageAvailable ? window.localStorage.getItem(themeStorageKey) : "";
 
-    if (savedTheme === "dark" || savedTheme === "light") {
+    if (savedTheme === "" || savedTheme === "light") {
       return savedTheme;
     }
 
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
+      return "";
     }
 
     return "light";

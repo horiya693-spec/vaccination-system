@@ -1,9 +1,3 @@
-
-@extends('user.navbar')
-@section('user')
-
-
-
 <!-- resources/views/home.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
@@ -44,56 +38,6 @@ body {
 }
 
 /* Navbar */
-.user-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.welcome-user {
-    color: #087f8c;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    margin-right: 5px;
-}
-
-.dashboard-btn {
-    background: #087f8c;
-    color: white;
-    padding: 9px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.dashboard-btn:hover {
-    background: #05636d;
-    transform: translateY(-2px);
-}
-
-.logout-form {
-    margin: 0;
-}
-
-.logout-btn {
-    background: transparent;
-    color: #087f8c;
-    border: 1px solid #087f8c;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.logout-btn:hover {
-    background: #087f8c;
-    color: white;
-}
 
 .navbar {
     height: 75px;
@@ -132,8 +76,8 @@ nav a {
 .welcome-user {
     text-decoration: none;
     color: #087f8c;
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 400;
     padding: 8px 0;
     transition: 0.3s;
     
@@ -749,6 +693,14 @@ footer p {
         height: 250px;
         font-size: 90px;
     }
+   a.profile-button {
+        font-size: 18px;
+        text-decoration: none;
+    color: #40566b;
+    font-size: 15px;
+    transition: 0.3s;
+
+    }
 }
 </style>
 <body>
@@ -759,278 +711,32 @@ footer p {
             <span>💉</span> VacciCare
         </div>
 
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#vaccines">Vaccines</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
 
-    @guest
+<nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#vaccines">Vaccines</a>
+   
+    <a href="#about">Book</a>
+    <a href="#contact">Contact</a>
+     @auth
+    <div class="">
+
+<a href="{{ route('parentdashboard') }}" class="">
+    My Profile
+</a>
+    </div>
+@endauth
+
+</nav>
+
+@guest
     <div class="nav-buttons">
         <a href="/Auth/login" class="login-btn">Login</a>
-        <a href="/auth.register" class="register-btn">Register</a>
+        <a href="{{ route('userregisterform') }}" class="register-btn">Register</a>
     </div>
 @endguest
 
-@auth
-<div class="user-actions">
 
-    <span class="welcome-user">
-        Hey, {{ Auth::user()->name }}!
-    </span>
-
-    <a href="{{route('parentdashboard')}}" class="dashboard-btn">
-        View Dashboard
-    </a>
-
-    <form action="{{ route('logout') }}" method="POST" class="logout-form">
-        @csrf
-        <button type="submit" class="logout-btn">
-            Logout
-        </button>
-    </form>
-
-</div>
-@endauth
-
-
-    </header>
-
-
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-           
-
-            <h1>
-                Protecting Lives<br>
-                Through <span>Vaccination</span>
-            </h1>
-
-            <p>
-                A simple and reliable vaccination management system
-                that helps patients, hospitals, and healthcare providers
-                manage vaccinations efficiently.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="/hospitals" class="primary-btn">Get Started →</a>
-                <a href="#about" class="secondary-btn">Learn More</a>
-            </div>
-
-            <div class="hero-stats">
-                <div>
-                    <strong>10K+</strong>
-                    <span>Patients</span>
-                </div>
-
-                <div>
-                    <strong>50+</strong>
-                    <span>Hospitals</span>
-                </div>
-
-                <div>
-                    <strong>25+</strong>
-                    <span>Vaccines</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-image"> 
-    </div> 
-
-</div>
-    </section>
-
-
-    <!-- Services -->
-    <section class="services" id="services">
-        <div class="section-heading">
-            <span>OUR SERVICES</span>
-            <h2>Everything You Need for Better Vaccination</h2>
-            <p>
-                Manage your vaccination journey easily with our
-                comprehensive healthcare services.
-            </p>
-        </div>
-
-        <div class="service-container">
-            
-       <div class="service-card">
-                <div class="service-icon">📅</div>
-                <h3>book appointment</h3>
-                <p>
-                    Find nearby hospitals and vaccination
-                    centers easily.
-                </p>
-                <a href="hospitals">book appointment →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🏥</div>
-                <h3>hospitals</h3>
-                <p>
-                    Keep track of your vaccination dates and
-                    never miss an important dose.
-                </p>
-                <a href="location">Learn More →</a>
-            </div>
-
-        
-
-            <div class="service-card">
-                <div class="service-icon">💊</div>
-                <h3>Vaccine Information</h3>
-                <p>
-                    Get useful information about available
-                    vaccines and their doses.
-                </p>
-                <a href="vaccines">View Vaccines →</a>
-            </div>
-
-
-            <div class="service-card">
-              <img src="{{ asset('Admin/assets/images/png/kote.jpg') }}" alt="">
-        </div>
-    </section>
-
-
-    <!-- Vaccines -->
-    <section class="vaccines" id="vaccines">
-
-        <div class="section-heading">
-            <span>VACCINES</span>
-            <h2>Common Vaccines</h2>
-            <p>Learn about some of the important vaccines.</p>
-        </div>
-
-        <div class="vaccine-container">
-
-            <div class="vaccine-card">
-                <div class="vaccine-top">
-                <img src="{{ asset('Admin/assets/images/png/BCG.jpg') }}" alt="">
-                </div>
-                <h3>BCG Vaccine</h3>
-                <p>Helps protect against tuberculosis.</p>
-                <button onclick="showInfo('BCG Vaccine')">
-                    View Details
-                </button>
-            </div>
-
-            <div class="vaccine-card">
-                <div class="vaccine-top">
-                    <img src="{{ asset('Admin/assets/images/png/POLIO.jpg') }}" alt="">
-                </div>
-                <h3>Polio Vaccine</h3>
-                <p>Helps protect children from polio.</p>
-                <button onclick="showInfo('Polio Vaccine')">
-                    View Details
-                </button>
-            </div>
-
-            <div class="vaccine-card">
-                <div class="vaccine-top">
-                    <img src="{{ asset('Admin/assets/images/png/HEPA.jpg') }}" alt="">
-                </div>
-                <h3>Hepatitis B</h3>
-                <p>Helps protect against hepatitis B infection.</p>
-                <button onclick="showInfo('Hepatitis B Vaccine')">
-                    View Details
-                </button>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- About -->
-    <section class="about" id="about">
-        <div class="about-image">
-            <div class="about-circle">
-                
-            </div>
-        </div>
-
-        <div class="about-content">
-            <span>ABOUT VACCICARE</span>
-
-            <h2>
-                Making Vaccination Management Simple & Reliable
-            </h2>
-
-            <p>
-                VacciCare is a vaccination management system designed
-                to connect patients, hospitals, and healthcare
-                administrators on one platform.
-            </p>
-
-            <div class="about-list">
-                <p>✓ Easy vaccination management</p>
-                <p>✓ Hospital and vaccine information</p>
-                <p>✓ Appointment tracking</p>
-                <p>✓ Secure patient records</p>
-            </div>
-
-            <a href="about" class="primary-btn">Explore System →</a>
-        </div>
-    </section>
-
-
-    <!-- CTA -->
-    <section class="cta">
-        <h2>Take Control of Your Vaccination Journey</h2>
-        <p>
-            Stay informed, stay protected, and keep your vaccination
-            records organized.
-        </p>
-
-        <a href="Auth/Register" class="cta-btn">Get Started Today →</a>
-    </section>
-
-
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div>
-            <span>CONTACT US</span>
-            <h2>Have Questions?</h2>
-            <p>
-                Our team is here to help you with your vaccination
-                management needs.
-            </p>
-        </div>
-
-        <div class="contact-info">
-            <p>📧 support@vaccicare.com</p>
-            <p>📞 +92 300 1234567</p>
-            <p>📍 Healthcare Center</p>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">
-         VacciCare
-        </div>
-
-        <p>
-            © 2026 VacciCare. Vaccination Management System.
-        </p>
-
-        <div class="social">
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-            <a href="#">Twitter</a>
-        </div>
-    </footer>
-
-
-    <script src="{{ asset('js/script.js') }}"></script>
-
-</body>
-<script>
-
-</script>
-</html>
-@endsection
+</header>
+@yield('user')

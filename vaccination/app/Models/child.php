@@ -4,35 +4,42 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class child extends Model
 {
-   use HasFactory;
+    use HasFactory;
 
-    // 1. Tell Laravel the exact name of your database table
     protected $table = 'children';
 
-    // 2. Allow these columns to accept data (Mass Assignment Protection)
     protected $fillable = [
-    'Parent_Id', // Add this line
-    'Child_Name',
-    'Father_Name',
-    'Mother_Name',
-    'Child_Gender',
-    'DOB',
-    'Phone_Number',
-    'Address',
-];
+        'Parent_Id',
+        'Child_Name',
+        'Father_Name',
+        'Mother_Name',
+        'Child_Gender',
+        'DOB',
+        'Phone_Number',
+        'Address',
+    ];
 
-
-    // 3. Automatically convert the DOB string into a clean Carbon Date instance
     protected $casts = [
         'DOB' => 'date',
     ];
 
-    /**
-     * Get the parent user that owns this child.
-     */
-  
+    // Child ka parent
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'Parent_Id');
+    }
+
+    // Child ki vaccination records
+    public function childVaccinations(): HasMany
+    {
+        return $this->hasMany(
+            vaccineschild::class,
+            'child_id'
+        );
+    }
 }

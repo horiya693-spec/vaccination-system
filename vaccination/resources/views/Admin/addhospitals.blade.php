@@ -1,8 +1,4 @@
 
-@extends('Admin.sidebar')
-
-@section('admin')
-
 <style>
 
     .hospital-page {
@@ -149,12 +145,14 @@
 
 
         <form
-            action="#"
-            method="POST"
-            enctype="multipart/form-data">
-
+    
+    action="{{ route('storehospital') }}"
+    method="POST"
+    enctype="multipart/form-data">
             @csrf
 
+
+            <!-- Hospital Name -->
 
             <div class="form-group">
 
@@ -180,22 +178,24 @@
             </div>
 
 
+            <!-- Email -->
+
             <div class="form-group">
 
-                <label for="location">
-                    Hospital Location
+                <label for="email">
+                    Hospital Email
                 </label>
 
                 <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    placeholder="e.g. Gulshan-e-Iqbal, Karachi"
-                    value="{{ old('location') }}"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="hospital@example.com"
+                    value="{{ old('email') }}"
                     required
                 >
 
-                @error('location')
+                @error('email')
                     <div class="error">
                         {{ $message }}
                     </div>
@@ -203,6 +203,59 @@
 
             </div>
 
+
+            <!-- Password -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter hospital password"
+                    required
+                >
+
+                @error('password')
+                    <div class="error">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
+
+            <!-- Address -->
+
+            <div class="form-group">
+
+                <label for="address">
+                    Hospital Address
+                </label>
+
+                <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    placeholder="Enter complete hospital address"
+                    value="{{ old('address') }}"
+                    required
+                >
+
+                @error('address')
+                    <div class="error">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
+
+            <!-- Hospital Image -->
 
             <div class="form-group">
 
@@ -227,6 +280,8 @@
             </div>
 
 
+            <!-- Description -->
+
             <div class="form-group">
 
                 <label for="description">
@@ -248,9 +303,14 @@
             </div>
 
 
-            <button type="submit" class="submit-btn">
+            <!-- Submit -->
+
+            <button
+                type="submit"
+                class="submit-btn">
                 Add Hospital
             </button>
+
 
         </form>
 
@@ -258,7 +318,3 @@
 
 </div>
 
-
-@endsection
-
-<main class="admin-content">

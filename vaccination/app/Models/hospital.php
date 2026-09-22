@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hospital extends Model
+class hospital extends Model
 {
+
     protected $table = 'hospitals';
 
     protected $fillable = [
@@ -30,4 +31,7 @@ class Hospital extends Model
     {
         return $this->hasMany(Booking::class, 'hospital_id');
     }
+
+    protected $fillable = [ 'name', 'email', 'password', 'address','phone' ];
+
 }

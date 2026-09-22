@@ -397,9 +397,7 @@
 
     </header>
 
-@extends('user.sidebar')
-@section('user')
-
+    
 
 
 
@@ -1373,12 +1371,5 @@
         });
 
     </script>
-
-
 </body>
-
-
 </html>
-</html>
-@endsection
-
